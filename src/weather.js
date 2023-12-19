@@ -16,3 +16,11 @@ const searchForm = document.getElementById("search-form");
 searchForm.addEventListener("submit", handleFormSubmit);
 
 handleFormSubmit();
+
+// 2) CODE TO FETCH WEATHER API
+// save api key into a variable
+const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+
+function getWeatherData(city) {
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+}

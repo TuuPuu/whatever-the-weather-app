@@ -11,6 +11,7 @@ As a super beginner in web development, this project helped me solidify my under
 
 ## Installation
 This site has been deployed and can be accessed at the following:
+https://tuupuu.github.io/whatever-the-weather-app/
 
 
 The repo for this can also be accessed here:

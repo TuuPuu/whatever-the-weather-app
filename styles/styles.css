@@ -1,0 +1,57 @@
+body {
+  background-color: #fff2e5;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.main-container {
+  border: 1px solid black;
+}
+
+.search-bar {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.search-icon {
+  border: 1px solid black;
+  width: 50px;
+}
+
+.search-container {
+  border: 1px solid black;
+}
+
+.search-result {
+  border: 1px solid black;
+}
+
+.search-temperature {
+  border: 1px solid black;
+}
+.info-icon {
+  border: 1px solid black;
+  width: 50px;
+}
+
+.footer-text {
+  position: relative;
+  z-index: 1;
+  top: 600px; /* this is the height of the text */
+}
+footer {
+  position: absolute;
+  bottom: 40px; /* this is the height of the clousds */
+  width: 100%;
+  height: 75%; /* this is the height based on your design */
+  background-image: url("/assets/footerclouds.PNG");
+  background-size: cover;
+  background-position: center top;
+}

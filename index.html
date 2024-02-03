@@ -3,73 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
     <title>Whatever The Weather</title>
   </head>
 
   <body>
-    <!-- LOGO AND SEARCH FUNCTION -->
-    <header>
-      <h1>LOGO</h1>
-      <form>
-        <input
-          type="search"
-          placeholder=" ʕ •ᴥ•ʔ Please enter your city..."
-          required
+   
+      <!-- LOGO AND SEARCH FUNCTION -->
+      <header>
+        <img
+          src="/assets/logo.png"
+          alt="Whatever the Weather logo"
+          class="logo"
         />
+        <!-- content -->
+         <div class="main-container"></div>
+        <form>
+          <input
+            type="search"
+            placeholder=" ʕ •ᴥ•ʔ Please enter your city..."
+            required
+            class="search-bar"
+          />
 
-        <input type="image" src="/assets/search.PNG" alt="search icon" />
-      </form>
-    </header>
+          <input
+            type="image"
+            src="/assets/search.PNG"
+            alt="search icon"
+            class="search-icon"
+          />
+        </form>
+      </header>
 
-    <!-- MAIN CONTAINER -->
-    <main>
-      <!-- city search result -->
-      <div>
-        <h2>Paris</h2>
-        <p>Saturday 16:12</p>
-        <p>Humidity: 87%,</p>
-        <p>Wind: 7.2km/h</p>
-      </div>
+      <!-- SEARCH CONTAINER -->
+      <main>
+        <!-- city search result -->
+        <div class="search-container">
+          <div class="search-result">
+            <h2>Paris</h2>
+            <p>Saturday 16:12</p>
+            <p>Humidity: 87%,</p>
+            <p>Wind: 7.2km/h</p>
+          </div>
 
-      <!-- remaining 4 days -->
-      <div>
-        <!-- day 01 -->
-        <div>
-          <div>day +1</div>
+          <!-- remaining 4 days -->
+          <div>
+            <!-- day 01 -->
+            <div>
+              <div>day +1</div>
+              <div>🌞</div>
+            </div>
+
+            <!-- day 02 -->
+            <div>
+              <div>day +2</div>
+              <div>🌞</div>
+            </div>
+
+            <!-- day 03 -->
+            <div>
+              <div>day +3</div>
+              <div>🌞</div>
+            </div>
+
+            <!-- day 04 -->
+            <div>
+              <div>day +4</div>
+              <div>🌞</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- search temperature -->
+        <div class="search-temperature">
           <div>🌞</div>
+          <div>
+            <h2>12&deg;C</h2>
+            <p>moderate rain</p>
+          </div>
         </div>
-
-        <!-- day 02 -->
-        <div>
-          <div>day +2</div>
-          <div>🌞</div>
-        </div>
-
-        <!-- day 03 -->
-        <div>
-          <div>day +3</div>
-          <div>🌞</div>
-        </div>
-
-        <!-- day 04 -->
-        <div>
-          <div>day +4</div>
-          <div>🌞</div>
-        </div>
-      </div>
-
-      <!-- search temperature -->
-      <div>
-        <div>🌞</div>
-        <div>
-          <h2>12&deg;C</h2>
-          <p>moderate rain</p>
-        </div>
-      </div>
-    </main>
+      </main>
+    </div>
 
     <footer>
-      This project was coded lovingly by
+      <div class="footer-text">
+              This project was coded lovingly by
       <a href="https://tupuart.com/" target="_blank">Elora Ainoa</a>
       ʕっ•ᴥ•ʔっ and is on
       <a href="https://github.com/TuuPuu/shecodes-weather-app" target="_blank"
@@ -80,7 +98,11 @@
         >Netlify</a
       >
 
-      <button><img src="/assets/info.PNG" alt="info icon" /></button>
+      <button>
+        <img src="/assets/info.PNG" alt="info icon" class="info-icon" />
+      </button>
+      </div>
+
     </footer>
 
     <script href="./src/index.js"></script>

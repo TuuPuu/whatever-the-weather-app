@@ -1,77 +1,147 @@
 <!DOCTYPE html>
-<html lang="en-gb">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="styles/reset.css" />
-    <title>Weather Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Whatever The Weather</title>
   </head>
 
   <body>
-    <header
-      class="container-fluid text-center text-white bg-dark p-2 weather-header"
-    >
-      <h1>Weather Dashboard 🌤️</h1>
+    <!-- LOGO -->
+    <header>
+      <img
+        src="/assets/logo.png"
+        alt="Whatever the Weather logo"
+        class="logo"
+      />
     </header>
 
-    <!-- max-width for ultra wide resolutions -->
-    <div class="container-fluid" style="max-width: 1400px">
-      <div class="row">
-        <aside class="col-lg-3 pb-3">
-          <h2 id="form-heading" class="mt-1 h3 form-label">
-            Search for a City 🏙️
-          </h2>
-          <form id="search-form" class="form">
-            <div class="form-inline form-group">
-              <div class="input-group">
-                <input
-                  class="form-input weather-search"
-                  type="text"
-                  id="search-input"
-                  placeholder="Please enter your city..."
-                  aria-labelledby="form-heading"
-                  aria-controls="today forecast"
-                />
-                <div class="input-group-append">
-                  <button
-                    type="submit"
-                    class="btn search-button"
-                    id="search-button"
-                    aria-label="submit search"
-                  >
-                    Search
-                  </button>
-                  <hr class="hr weather-hr" />
-                </div>
+    <!-- CONTENT -->
+    <div class="main-container">
+      <form class="search-form">
+        <input
+          type="search"
+          placeholder=" ʕ •ᴥ•ʔ Please enter your city..."
+          required
+          class="search-bar"
+        />
+
+        <input
+          type="image"
+          src="/assets/search.PNG"
+          alt="search icon"
+          class="search-icon"
+        />
+      </form>
+
+      <!-- SEARCH CONTAINER -->
+      <main>
+        <div class="full-search-container">
+          <!-- city search result -->
+          <div class="search-container">
+            <div class="search-result">
+              <h1 class="city">Paris</h1>
+              <p class="date">Saturday 16:12</p>
+              <div class="humidity-wind">
+                <p>
+                  <img
+                    src="/assets/humidity.PNG"
+                    alt="Humidity icon"
+                    class="humidity-icons"
+                  />
+                  Humidity: 87%,
+                </p>
+                <p>
+                  <img
+                    src="/assets/wind.PNG"
+                    alt="Wind icon"
+                    class="humidity-icons"
+                  />
+                  Wind: 7.2km/h
+                </p>
               </div>
             </div>
-          </form>
-          <div class="list-group" id="history"></div>
-        </aside>
 
-        <div class="col-lg-9 pb-3">
-          <section
-            id="today"
-            class="mt-3"
-            role="region"
-            aria-live="polite"
-          ></section>
-          <section
-            id="forecast"
-            class="row mt-3"
-            role="region"
-            aria-live="polite"
-          ></section>
+            <hr />
+
+            <!-- remaining 4 days -->
+            <div class="secondary-weather-container">
+              <!-- day 01 -->
+              <div class="secondary-weather">
+                <div class="secondary-weather-icon-text">day +1</div>
+                <div class="secondary-weather-icon">🌞</div>
+              </div>
+
+              <!-- day 02 -->
+              <div class="secondary-weather">
+                <div class="secondary-weather-icon-text">day +2</div>
+                <div class="secondary-weather-icon">🌞</div>
+              </div>
+
+              <!-- day 03 -->
+              <div class="secondary-weather">
+                <div class="secondary-weather-icon-text">day +3</div>
+                <div class="secondary-weather-icon">🌞</div>
+              </div>
+
+              <!-- day 04 -->
+              <div class="secondary-weather">
+                <div class="secondary-weather-icon-text">day +4</div>
+                <div class="secondary-weather-icon">🌞</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- search temperature -->
+          <div class="search-temperature">
+            <div class="main-weather-icon-container">
+              <div>
+                <img
+                  src="/assets/clearsky.PNG"
+                  alt="Temp Teddy Weaher icon illustration"
+                  class="main-weather-icon"
+                />
+              </div>
+            </div>
+            <div class="temperature-info">
+              <h2><span class="temperature">12</span>&deg;C</h2>
+              <p>moderate rain</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
+
+      <footer>
+        <div class="footer-text">
+          This project was coded lovingly by
+          <a href="https://tupuart.com/" target="_blank">Elora Ainoa</a>
+          ʕっ•ᴥ•ʔっ also is on
+          <a
+            href="https://github.com/TuuPuu/shecodes-weather-app"
+            target="_blank"
+            >GitHub</a
+          >
+          and hosted on
+          <a
+            href="https://app.netlify.com/teams/tuupuu/overview"
+            target="_blank"
+            >Netlify</a
+          >
+
+          <button>
+            <!-- <img src="/assets/info.PNG" alt="info icon" class="info-icon" /> -->
+          </button>
+        </div>
+      </footer>
     </div>
 
-    <!-- Day.js -->
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- JAVASCRIPT FOR PROJECT -->
-    <script src="/src/weather.js"></script>
+    <script href="./src/index.js"></script>
   </body>
 </html>

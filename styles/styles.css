@@ -28,7 +28,7 @@ body {
 
 .full-search-container {
   background-color: #ffffef;
-  border-radius: 20px;
+  border-radius: 20px 20px 0px 0px;
 }
 
 .search-bar {
@@ -71,23 +71,22 @@ body {
 footer {
   border-top: 1px solid #ffffef;
   background-color: #ffffef;
+  border-radius: 0px 0px 20px 20px;
   margin: 0;
-  padding: 0;
+  padding: 10px 20px 10px;
   font-size: 12px;
 }
 
 button {
-  background-color: #ffffef;
-  width: 40px;
-  height: 40px;
+  background-color: #b4d874; /* Set the background color */
+  background-image: url("/assets/info.PNG"); /* Set the image as the background */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #b4d874;
+  border-radius: 2px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
   vertical-align: bottom;
-}
-
-.info-icon {
-  border: 1px solid black;
-  width: 40px;
-  height: 40px;
-  vertical-align: bottom;
-  margin: 0;
-  left: 50px;
 }

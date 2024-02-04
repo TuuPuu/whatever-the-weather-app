@@ -1,18 +1,28 @@
 body {
   background-color: #fff2e5;
+  font-family: "Fredoka", sans-serif;
 }
 
 .logo {
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 300px;
   height: auto;
   margin: 0 auto;
+  margin-bottom: 0;
 }
 
 .main-container {
   border: 1px solid black;
+  border-radius: 15px;
+  background-color: #75d0e1;
+  max-width: 600px;
+  margin: 20px auto;
+  margin-top: 0;
+  padding: 30px 50px 50px 50px;
+  box-shadow: 0 30px 50px rgba(69, 66, 71, 0.05);
 }
 
 .search-bar {

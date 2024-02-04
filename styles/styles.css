@@ -19,7 +19,7 @@ body {
   border: 1px solid black;
   border-radius: 15px;
   background-color: #75d0e1;
-  max-width: 600px;
+  max-width: 50%;
   margin: 20px auto;
   margin-top: 0;
   padding: 30px 50px 50px 50px;
@@ -31,6 +31,7 @@ body {
   border-radius: 20px 20px 0px 0px;
   display: flex;
   justify-content: space-between;
+  height: auto;
 }
 
 .search-bar {
@@ -38,7 +39,7 @@ body {
   background-color: #ffffef;
   border: none;
   border-radius: 30px 5px 5px 30px;
-  width: 90%;
+  width: 100%;
   height: 47px;
   font-size: 16px;
   padding: 10px;
@@ -62,6 +63,7 @@ body {
   border: 1px solid black;
   background-color: #ffffef;
   width: 45%;
+  margin-bottom: 0;
 }
 
 .search-form {
@@ -88,9 +90,27 @@ body {
 }
 
 .secondary-weather-container {
+  border: 1px solid black;
+  margin-top: auto;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.secondary-weather {
+  border: 1px solid black;
+  width: auto; /* Set the desired width for the image */
+  height: 100px;
+  vertical-align: bottom;
+  margin-bottom: 0;
+}
+
+.secondary-weather-icon {
+  border: 1px solid black;
+  width: 100px; /* Set the desired width for the image */
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .humidity-wind {
@@ -98,17 +118,29 @@ body {
   justify-content: space-evenly;
   align-items: center;
 }
+
+.main-weather-icon-container {
+  margin-right: 10px;
+}
+
 .main-weather-icon {
   border: 1px solid black;
+  width: 300px; /* Set the desired width for the image */
+  height: auto;
 }
 
 .search-temperature {
   border: 1px solid black;
   background-color: #ffffef;
-  display: flex;
-  justify-content: center;
+  display: flex; /* Use flexbox to create a flexible container */
   align-items: center;
-  width: 40%;
+  text-align: center;
+  width: 50%;
+}
+
+.temperature-info {
+  display: flex;
+  flex-direction: column;
 }
 
 footer {

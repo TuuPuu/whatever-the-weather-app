@@ -43,72 +43,78 @@
 
       <!-- SEARCH CONTAINER -->
       <main>
-        <!-- city search result -->
-        <div class="search-container">
-          <div class="search-result">
-            <h2>Paris</h2>
-            <p>Saturday 16:12</p>
-            <p>Humidity: 87%,</p>
-            <p>Wind: 7.2km/h</p>
+        <div class="full-search-container">
+          <!-- city search result -->
+          <div class="search-container">
+            <div class="search-result">
+              <h2>Paris</h2>
+              <p>Saturday 16:12</p>
+              <p>Humidity: 87%,</p>
+              <p>Wind: 7.2km/h</p>
+            </div>
+
+            <!-- remaining 4 days -->
+            <div class="secondary-weather-container">
+              <!-- day 01 -->
+              <div class="secondary-weather">
+                <div>day +1</div>
+                <div>🌞</div>
+              </div>
+
+              <!-- day 02 -->
+              <div class="secondary-weather">
+                <div>day +2</div>
+                <div>🌞</div>
+              </div>
+
+              <!-- day 03 -->
+              <div class="secondary-weather">
+                <div>day +3</div>
+                <div>🌞</div>
+              </div>
+
+              <!-- day 04 -->
+              <div class="secondary-weather">
+                <div>day +4</div>
+                <div>🌞</div>
+              </div>
+            </div>
           </div>
 
-          <!-- remaining 4 days -->
-          <div class="secondary-weather-container">
-            <!-- day 01 -->
-            <div class="secondary-weather">
-              <div>day +1</div>
-              <div>🌞</div>
+          <!-- search temperature -->
+          <div class="search-temperature">
+            <div>🌞</div>
+            <div>
+              <h2>12&deg;C</h2>
+              <p>moderate rain</p>
             </div>
-
-            <!-- day 02 -->
-            <div class="secondary-weather">
-              <div>day +2</div>
-              <div>🌞</div>
-            </div>
-
-            <!-- day 03 -->
-            <div class="secondary-weather">
-              <div>day +3</div>
-              <div>🌞</div>
-            </div>
-
-            <!-- day 04 -->
-            <div class="secondary-weather">
-              <div>day +4</div>
-              <div>🌞</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- search temperature -->
-        <div class="search-temperature">
-          <div>🌞</div>
-          <div>
-            <h2>12&deg;C</h2>
-            <p>moderate rain</p>
           </div>
         </div>
       </main>
+
+      <footer>
+        <div class="footer-text">
+          This project was coded lovingly by
+          <a href="https://tupuart.com/" target="_blank">Elora Ainoa</a>
+          ʕっ•ᴥ•ʔっ and is on
+          <a
+            href="https://github.com/TuuPuu/shecodes-weather-app"
+            target="_blank"
+            >GitHub</a
+          >
+          and hosted on
+          <a
+            href="https://app.netlify.com/teams/tuupuu/overview"
+            target="_blank"
+            >Netlify</a
+          >
+
+          <button>
+            <img src="/assets/info.PNG" alt="info icon" class="info-icon" />
+          </button>
+        </div>
+      </footer>
     </div>
-
-    <footer>
-      <div class="footer-text">
-        This project was coded lovingly by
-        <a href="https://tupuart.com/" target="_blank">Elora Ainoa</a>
-        ʕっ•ᴥ•ʔっ and is on
-        <a href="https://github.com/TuuPuu/shecodes-weather-app" target="_blank"
-          >GitHub</a
-        >
-        and hosted on
-        <a href="https://app.netlify.com/teams/tuupuu/overview" target="_blank"
-          >Netlify</a
-        >
-
-        <button>
-          <img src="/assets/info.PNG" alt="info icon" class="info-icon" />
-        </button>
-      </div>
-    </footer>
 
     <script href="./src/index.js"></script>
   </body>

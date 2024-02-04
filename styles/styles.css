@@ -26,7 +26,9 @@ body {
   box-shadow: 0 30px 50px rgba(69, 66, 71, 0.05);
 }
 
-.search-form {
+.full-search-container {
+  background-color: #ffffef;
+  border-radius: 20px;
 }
 
 .search-bar {
@@ -65,7 +67,27 @@ body {
 .search-temperature {
   border: 1px solid black;
 }
+
+footer {
+  border-top: 1px solid #ffffef;
+  background-color: #ffffef;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+button {
+  background-color: #ffffef;
+  width: 40px;
+  height: 40px;
+  vertical-align: bottom;
+}
+
 .info-icon {
   border: 1px solid black;
-  width: 50px;
+  width: 40px;
+  height: 40px;
+  vertical-align: bottom;
+  margin: 0;
+  left: 50px;
 }

@@ -156,7 +156,7 @@ hr {
   width: 400px;
   height: auto;
   margin-left: 0;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 
 .search-temperature {
@@ -172,7 +172,7 @@ hr {
   width: 50%;
   border-radius: 20px;
   overflow: hidden;
-  padding-right: 60px;
+  padding-right: 80px;
 }
 
 .temperature-info {

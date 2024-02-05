@@ -113,6 +113,8 @@ hr {
   height: 100px;
   vertical-align: bottom;
   margin-bottom: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .secondary-weather-icon {
@@ -153,23 +155,32 @@ hr {
   width: 400px;
   height: auto;
   margin-left: 0;
+  max-width: 100%;
 }
 
 .search-temperature {
   /* border: 1px solid black; */
   background-color: #ffffef;
   display: flex;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 100%;
   align-items: center;
   text-align: center;
   width: 50%;
   border-radius: 20px;
+  overflow: hidden;
+  padding-right: 60px;
 }
 
 .temperature-info {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   /* padding-right: 70px; */
   font-size: 20px;
+  /* background-color: aqua; */
+  max-width: 100%;
 }
 
 .temperature-info h2 {
@@ -181,6 +192,10 @@ hr {
 }
 
 footer {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px;  */
   border-top: 1px solid #ffffef;
   background-color: #ffffef;
   border-radius: 0px 0px 20px 20px;
@@ -188,10 +203,16 @@ footer {
   padding: 10px 20px 10px;
   font-size: 12px;
   color: rgba(69, 66, 71, 0.6);
-  text-align: center;
   margin-top: 20px;
-  max-width: 100%;
+  /* max-width: 100%; */
   margin-bottom: 10px;
+  /* overflow: hidden; */
+  /* vertical-align: bottom; */
+}
+
+.footer-text {
+  display: flex;
+  justify-content: space-between;
 }
 
 a {
@@ -211,8 +232,11 @@ button {
   border-radius: 3px;
   padding: 10px;
   cursor: pointer;
-  margin-left: 700px;
-  vertical-align: bottom;
   width: 30px;
   height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  /* display: flex; */
+  justify-content: space-evenly;
+  align-items: center;
 }

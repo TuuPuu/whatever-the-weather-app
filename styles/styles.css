@@ -215,7 +215,7 @@ footer {
   justify-content: space-between;
 }
 
-a {
+.hyperlink {
   text-decoration: none;
   color: #1ea6c6;
   font-weight: bold;
@@ -229,6 +229,82 @@ button {
   background-position: center center;
   background-size: contain;
   border: 1px solid #b4d874;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  /* display: flex; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.insta {
+  background-color: #ffffef;
+  background-image: url("/assets/insta.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  /* display: flex; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.threads {
+  background-color: #ffffef;
+  background-image: url("/assets/threads.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  /* display: flex; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.github {
+  background-color: #ffffef;
+  background-image: url("/assets/github.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  /* display: flex; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.youtube {
+  background-color: #ffffef;
+  background-image: url("/assets/youtube.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
   border-radius: 3px;
   padding: 10px;
   cursor: pointer;

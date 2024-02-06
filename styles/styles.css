@@ -1,5 +1,5 @@
 html {
-  font-size: 20px; /* Set your base font size */
+  font-size: 20px;
 }
 
 body {
@@ -66,7 +66,6 @@ body {
 }
 
 .search-container {
-  /* border: 1px solid black; */
   background-color: #ffffef;
   width: 45%;
   margin-bottom: 0;
@@ -101,7 +100,6 @@ hr {
 }
 
 .secondary-weather-container {
-  /* border: 1px solid black; */
   margin-top: auto;
   display: flex;
   justify-content: space-evenly;
@@ -109,7 +107,6 @@ hr {
 }
 
 .secondary-weather {
-  /* border: 1px solid black; */
   width: auto;
   height: 100px;
   vertical-align: bottom;
@@ -119,7 +116,6 @@ hr {
 }
 
 .secondary-weather-icon {
-  /* border: 1px solid black; */
   width: 100px;
   height: auto;
   margin: 0 auto;
@@ -129,7 +125,6 @@ hr {
 .secondary-weather-icon-text {
   text-align: center;
   margin-top: 20px;
-  /* border-top: 1px solid rgba(69, 66, 71, 0.6); */
 }
 
 .humidity-wind {
@@ -147,20 +142,22 @@ hr {
   margin: 0 auto;
 }
 
+.humidity-data {
+  font-weight: bold;
+  color: #b4d874;
+}
+
 .main-weather-icon-container {
   margin-right: 10px;
 }
 
 .main-weather-icon {
-  /* border: 1px solid black; */
   width: 400px;
   height: auto;
   margin-left: 0;
-  /* max-width: 100%; */
 }
 
 .search-temperature {
-  /* border: 1px solid black; */
   background-color: #ffffef;
   display: flex;
   justify-content: space-evenly;
@@ -176,11 +173,7 @@ hr {
 }
 
 .temperature-info {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* padding-right: 70px; */
   font-size: 20px;
-  /* background-color: aqua; */
   max-width: 100%;
 }
 
@@ -193,10 +186,8 @@ hr {
 }
 
 footer {
-  /* display: flex; */
   justify-content: space-between;
   align-items: center;
-  /* padding: 10px;  */
   border-top: 1px solid #ffffef;
   background-color: #ffffef;
   border-radius: 0px 0px 20px 20px;
@@ -205,10 +196,7 @@ footer {
   font-size: 12px;
   color: rgba(69, 66, 71, 0.6);
   margin-top: 20px;
-  /* max-width: 100%; */
   margin-bottom: 10px;
-  /* overflow: hidden; */
-  /* vertical-align: bottom; */
 }
 
 .footer-text {
@@ -237,7 +225,6 @@ button {
   height: 30px;
   max-width: 100%;
   margin-top: auto;
-  /* display: flex; */
   justify-content: space-evenly;
   align-items: center;
 }
@@ -256,7 +243,6 @@ button {
   height: 30px;
   max-width: 100%;
   margin-top: auto;
-  /* display: flex; */
   justify-content: space-evenly;
   align-items: center;
 }
@@ -275,7 +261,6 @@ button {
   height: 30px;
   max-width: 100%;
   margin-top: auto;
-  /* display: flex; */
   justify-content: space-evenly;
   align-items: center;
 }
@@ -294,7 +279,6 @@ button {
   height: 30px;
   max-width: 100%;
   margin-top: auto;
-  /* display: flex; */
   justify-content: space-evenly;
   align-items: center;
 }
@@ -313,7 +297,6 @@ button {
   height: 30px;
   max-width: 100%;
   margin-top: auto;
-  /* display: flex; */
   justify-content: space-evenly;
   align-items: center;
 }

@@ -1,5 +1,5 @@
 html {
-  font-size: 20px; /* Set your base font size */
+  font-size: 20px;
 }
 
 body {
@@ -49,6 +49,7 @@ body {
   font-size: 18px;
   padding: 20px;
   margin-right: 0;
+  font-family: "Fredoka", sans-serif;
 }
 
 .search-icon {
@@ -65,7 +66,6 @@ body {
 }
 
 .search-container {
-  /* border: 1px solid black; */
   background-color: #ffffef;
   width: 45%;
   margin-bottom: 0;
@@ -100,7 +100,6 @@ hr {
 }
 
 .secondary-weather-container {
-  /* border: 1px solid black; */
   margin-top: auto;
   display: flex;
   justify-content: space-evenly;
@@ -108,15 +107,15 @@ hr {
 }
 
 .secondary-weather {
-  /* border: 1px solid black; */
   width: auto;
   height: 100px;
   vertical-align: bottom;
   margin-bottom: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .secondary-weather-icon {
-  /* border: 1px solid black; */
   width: 100px;
   height: auto;
   margin: 0 auto;
@@ -126,7 +125,6 @@ hr {
 .secondary-weather-icon-text {
   text-align: center;
   margin-top: 20px;
-  /* border-top: 1px solid rgba(69, 66, 71, 0.6); */
 }
 
 .humidity-wind {
@@ -144,32 +142,39 @@ hr {
   margin: 0 auto;
 }
 
+.humidity-data {
+  font-weight: bold;
+  color: #b4d874;
+}
+
 .main-weather-icon-container {
   margin-right: 10px;
 }
 
 .main-weather-icon {
-  /* border: 1px solid black; */
   width: 400px;
   height: auto;
   margin-left: 0;
 }
 
 .search-temperature {
-  /* border: 1px solid black; */
   background-color: #ffffef;
   display: flex;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 100%;
   align-items: center;
   text-align: center;
   width: 50%;
   border-radius: 20px;
+  overflow: hidden;
+  padding-right: 80px;
 }
 
 .temperature-info {
-  display: flex;
-  flex-direction: column;
-  /* padding-right: 70px; */
   font-size: 20px;
+  max-width: 100%;
 }
 
 .temperature-info h2 {
@@ -181,6 +186,8 @@ hr {
 }
 
 footer {
+  justify-content: space-between;
+  align-items: center;
   border-top: 1px solid #ffffef;
   background-color: #ffffef;
   border-radius: 0px 0px 20px 20px;
@@ -188,13 +195,16 @@ footer {
   padding: 10px 20px 10px;
   font-size: 12px;
   color: rgba(69, 66, 71, 0.6);
-  text-align: center;
   margin-top: 20px;
-  max-width: 100%;
   margin-bottom: 10px;
 }
 
-a {
+.footer-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hyperlink {
   text-decoration: none;
   color: #1ea6c6;
   font-weight: bold;
@@ -211,8 +221,82 @@ button {
   border-radius: 3px;
   padding: 10px;
   cursor: pointer;
-  margin-left: 700px;
-  vertical-align: bottom;
   width: 30px;
   height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.insta {
+  background-color: #ffffef;
+  background-image: url("/assets/insta.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.threads {
+  background-color: #ffffef;
+  background-image: url("/assets/threads.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.github {
+  background-color: #ffffef;
+  background-image: url("/assets/github.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.youtube {
+  background-color: #ffffef;
+  background-image: url("/assets/youtube.PNG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  border: 1px solid #ffffef;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  margin-top: auto;
+  justify-content: space-evenly;
+  align-items: center;
 }

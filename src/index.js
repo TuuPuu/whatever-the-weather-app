@@ -106,12 +106,16 @@ function handleSearch(event) {
   function accessWeather(response) {
     function getTemperature(secondResponse) {
       let data = secondResponse.data;
-      let temperature = Math.round(secondResponse.data.main.temp);
-      let fetchedWind = Math.round(secondResponse.data.wind.speed * 10) / 10;
-      let fetchedHumidity = secondResponse.data.main.humidity;
+      let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
+      let fetchedWind =
+        Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
+      let fetchedHumidity = secondResponse.data.list[0].main.humidity;
       let wind = `${fetchedWind} m/s`;
       let humidity = `${fetchedHumidity} %`;
 
+      console.log(data);
+      console.log(mainTemperature);
+      console.log(wind);
       console.log(humidity);
     }
 
@@ -119,7 +123,7 @@ function handleSearch(event) {
     let fetchedLatCode = response.data[0].lat;
 
     let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-    let apiUrlMain = `https://api.openweathermap.org/data/2.5/weather?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
+    let apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
     axios.get(apiUrlMain).then(getTemperature);
   }

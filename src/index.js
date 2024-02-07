@@ -85,11 +85,11 @@ addTimeOnPage();
 
 /*SEARCH FORM CODE*/
 
-// function to access user input and change city based on input
+// FUNCTION TO ACCESS INPUT AND CHANGE CITY NAME ELEMENT BASED ON INPUT
 function handleSearch(event) {
   event.preventDefault();
 
-  // function to capitalise accessed user input
+  // FUNCTION TO CAPITALISE ACCESED USER INPUT
   function capitaliseLetter() {
     let submittedUserInput = userInput.value;
     const trimmedInput = submittedUserInput.trim();
@@ -102,10 +102,10 @@ function handleSearch(event) {
     return updatedTrimmedInput;
   }
 
-  // function to get Lon an Lat geo code for main api call and then use for main temperature fetch
+  // FUNCTION TO GET LON AND LAT GEO CODES IN ORDER TO USE IN SECOND API CALL FOR TEMP
   function accessWeather(response) {
-    // second api call- to get temp
-    function getTemperature(secondResponse) {
+    // SECOND API CALL- to get temp
+    function getTemperatureData(secondResponse) {
       // current day data
       let data = secondResponse.data;
       let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
@@ -151,6 +151,18 @@ function handleSearch(event) {
       let dayFourWeatherConditionId =
         secondResponse.data.list[32].weather[0].id;
 
+      // DOM variables
+      let temperatureElement = document.querySelector("#temperature");
+      let weatherDescriptionElement = document.querySelector(
+        "#weather-description"
+      );
+      let humidityElement = document.querySelector("#humidity");
+      let windElement = document.querySelector("#wind");
+      let dayOne = document.querySelector("#day-one");
+      let dayTwo = document.querySelector("#day-two");
+      let dayThree = document.querySelector("#day-three");
+      let dayFour = document.querySelector("#day-four");
+
       console.log(data);
       // console.log(dayFourWeatherConditionId);
       // console.log(wind);
@@ -163,7 +175,7 @@ function handleSearch(event) {
     let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
     let apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
-    axios.get(apiUrlMain).then(getTemperature);
+    axios.get(apiUrlMain).then(getTemperatureData);
   }
 
   // list of main variables
@@ -176,6 +188,7 @@ function handleSearch(event) {
 
   cityName.innerHTML = updatedInput;
 
+  // FIRST API CALL - to get geo codes
   axios.get(apiUrlGeocode).then(accessWeather);
 
   // this is the data that will be fed into the next function, the api call, which runs everytime we recieve this data

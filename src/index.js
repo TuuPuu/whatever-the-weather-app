@@ -107,10 +107,12 @@ function handleSearch(event) {
     function getTemperature(secondResponse) {
       let data = secondResponse.data;
       let temperature = Math.round(secondResponse.data.main.temp);
-      let calculatedWind = Math.round(secondResponse.data.wind.speed * 10) / 10;
-      let wind = `${calculatedWind} m/s`;
+      let fetchedWind = Math.round(secondResponse.data.wind.speed * 10) / 10;
+      let fetchedHumidity = secondResponse.data.main.humidity;
+      let wind = `${fetchedWind} m/s`;
+      let humidity = `${fetchedHumidity} %`;
 
-      console.log(wind);
+      console.log(humidity);
     }
 
     let fetchedLonCode = response.data[0].lon;

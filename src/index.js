@@ -109,8 +109,15 @@ function handleSearch(event) {
       // DOM manipulation function
       function changeTemperatureInfo() {
         cityName.innerHTML = updatedInput;
+
         humidityElement.innerHTML = humidity;
         windElement.innerHTML = wind;
+
+        temperatureOne.innerHTML = dayOneTemperature;
+        temperatureTwo.innerHTML = dayTwoTemperature;
+        temperatureThree.innerHTML = dayThreeTemperature;
+        temperatureFour.innerHTML = dayFourTemperature;
+
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
@@ -121,40 +128,42 @@ function handleSearch(event) {
       let fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
       let fetchedHumidity = secondResponse.data.list[0].main.humidity;
-      let wind = `${fetchedWind} m/s`;
-      let humidity = `${fetchedHumidity} %`;
+      let wind = `${fetchedWind}m/s`;
+      let humidity = `${fetchedHumidity}%`;
       let weatherDescription =
         secondResponse.data.list[0].weather[0].description;
       let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
       // day +1 data
-      let dayOneTemperature = Math.round(secondResponse.data.list[8].main.temp);
+      let dayOneTemperature = `${Math.round(
+        secondResponse.data.list[8].main.temp
+      )}&deg;C`;
       let dayOneWeatherConditionMain =
         secondResponse.data.list[8].weather[0].main;
       let dayOneWeatherConditionId = secondResponse.data.list[8].weather[0].id;
 
       // day +2 data
-      let dayTwoTemperature = Math.round(
+      let dayTwoTemperature = `${Math.round(
         secondResponse.data.list[16].main.temp
-      );
+      )}&deg;C`;
       let dayTwoWeatherConditionMain =
         secondResponse.data.list[16].weather[0].main;
       let dayTwoWeatherConditionId = secondResponse.data.list[16].weather[0].id;
 
       // day +3 data
-      let dayThreeTemperature = Math.round(
+      let dayThreeTemperature = `${Math.round(
         secondResponse.data.list[24].main.temp
-      );
+      )}&deg;C`;
       let dayThreeWeatherConditionMain =
         secondResponse.data.list[24].weather[0].main;
       let dayThreeWeatherConditionId =
         secondResponse.data.list[24].weather[0].id;
 
       // day +4 data
-      let dayFourTemperature = Math.round(
+      let dayFourTemperature = `${Math.round(
         secondResponse.data.list[32].main.temp
-      );
+      )}&deg;C`;
       let dayFourWeatherConditionMain =
         secondResponse.data.list[32].weather[0].main;
       let dayFourWeatherConditionId =
@@ -171,9 +180,13 @@ function handleSearch(event) {
       let dayTwo = document.querySelector("#day-two");
       let dayThree = document.querySelector("#day-three");
       let dayFour = document.querySelector("#day-four");
+      let temperatureOne = document.querySelector("#temperature-one");
+      let temperatureTwo = document.querySelector("#temperature-two");
+      let temperatureThree = document.querySelector("#temperature-three");
+      let temperatureFour = document.querySelector("#temperature-four");
 
       changeTemperatureInfo();
-      console.log(data);
+      // console.log(data);
       // console.log(dayFourWeatherConditionId);
       // console.log(wind);
       // console.log(humidity);

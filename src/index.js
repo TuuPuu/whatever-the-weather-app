@@ -104,7 +104,9 @@ function handleSearch(event) {
 
   // function to get Lon an Lat geo code for main api call and then use for main temperature fetch
   function accessWeather(response) {
+    // second api call- to get temp
     function getTemperature(secondResponse) {
+      // current day data
       let data = secondResponse.data;
       let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
       let fetchedWind =
@@ -112,11 +114,47 @@ function handleSearch(event) {
       let fetchedHumidity = secondResponse.data.list[0].main.humidity;
       let wind = `${fetchedWind} m/s`;
       let humidity = `${fetchedHumidity} %`;
+      let weatherDescription =
+        secondResponse.data.list[0].weather[0].description;
+      let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
+      let weatherConditionId = secondResponse.data.list[0].weather[0].id;
+
+      // day +1 data
+      let dayOneTemperature = Math.round(secondResponse.data.list[8].main.temp);
+      let dayOneWeatherConditionMain =
+        secondResponse.data.list[8].weather[0].main;
+      let dayOneWeatherConditionId = secondResponse.data.list[8].weather[0].id;
+
+      // day +2 data
+      let dayTwoTemperature = Math.round(
+        secondResponse.data.list[16].main.temp
+      );
+      let dayTwoWeatherConditionMain =
+        secondResponse.data.list[16].weather[0].main;
+      let dayTwoWeatherConditionId = secondResponse.data.list[16].weather[0].id;
+
+      // day +3 data
+      let dayThreeTemperature = Math.round(
+        secondResponse.data.list[24].main.temp
+      );
+      let dayThreeWeatherConditionMain =
+        secondResponse.data.list[24].weather[0].main;
+      let dayThreeWeatherConditionId =
+        secondResponse.data.list[24].weather[0].id;
+
+      // day +4 data
+      let dayFourTemperature = Math.round(
+        secondResponse.data.list[32].main.temp
+      );
+      let dayFourWeatherConditionMain =
+        secondResponse.data.list[32].weather[0].main;
+      let dayFourWeatherConditionId =
+        secondResponse.data.list[32].weather[0].id;
 
       console.log(data);
-      console.log(mainTemperature);
-      console.log(wind);
-      console.log(humidity);
+      // console.log(dayFourWeatherConditionId);
+      // console.log(wind);
+      // console.log(humidity);
     }
 
     let fetchedLonCode = response.data[0].lon;
@@ -130,13 +168,13 @@ function handleSearch(event) {
 
   // list of main variables
   let userInput = document.querySelector("#search-form-input");
-  let cityHeading = document.querySelector("#city-heading");
+  let cityName = document.querySelector("#city-heading");
   let updatedInput = capitaliseLetter();
-  let cityName = userInput.value;
+  let citySearch = userInput.value;
   let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-  let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`;
+  let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
-  cityHeading.innerHTML = updatedInput;
+  cityName.innerHTML = updatedInput;
 
   axios.get(apiUrlGeocode).then(accessWeather);
 

@@ -106,6 +106,15 @@ function handleSearch(event) {
   function accessWeather(response) {
     // SECOND API CALL- to get temp
     function getTemperatureData(secondResponse) {
+      // DOM manipulation function
+      function changeTemperatureInfo() {
+        cityName.innerHTML = updatedInput;
+        humidityElement.innerHTML = humidity;
+        windElement.innerHTML = wind;
+        temperatureElement.innerHTML = mainTemperature;
+        weatherDescriptionElement.innerHTML = weatherDescription;
+      }
+
       // current day data
       let data = secondResponse.data;
       let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
@@ -163,6 +172,7 @@ function handleSearch(event) {
       let dayThree = document.querySelector("#day-three");
       let dayFour = document.querySelector("#day-four");
 
+      changeTemperatureInfo();
       console.log(data);
       // console.log(dayFourWeatherConditionId);
       // console.log(wind);
@@ -186,7 +196,7 @@ function handleSearch(event) {
   let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
   let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
-  cityName.innerHTML = updatedInput;
+  // cityName.innerHTML = updatedInput;
 
   // FIRST API CALL - to get geo codes
   axios.get(apiUrlGeocode).then(accessWeather);

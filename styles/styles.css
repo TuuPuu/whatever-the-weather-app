@@ -112,7 +112,7 @@ hr {
   vertical-align: bottom;
   margin-bottom: 0;
   max-width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .secondary-weather-icon {
@@ -120,11 +120,19 @@ hr {
   height: auto;
   margin: 0 auto;
   text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .secondary-weather-icon-text {
   text-align: center;
   margin-top: 20px;
+  font-size: 14px;
+}
+
+.secondary-weather-day {
+  text-align: center;
+  font-size: 16px;
 }
 
 .humidity-wind {

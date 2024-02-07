@@ -104,16 +104,22 @@ function handleSearch(event) {
 
   // function to get Lon an Lat geo code for main api call
   function getGeoCode(response) {
+    function getTemperature(secondResponse) {
+      let data = secondResponse.data;
+      // let temperature = Math.round(secondResponse.data.main.temp);
+      console.log(data);
+    }
+
     let fetchedLonCode = response.data[0].lon;
     let fetchedLatCode = response.data[0].lat;
-    // let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-    // let apiUrlMain = ``;
 
-    console.log(fetchedLonCode);
-    console.log(fetchedLatCode);
+    let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+    let apiUrlMain = `https://api.openweathermap.org/data/2.5/weather?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}`;
+
+    axios.get(apiUrlMain).then(getTemperature);
   }
 
-  // list of variables
+  // list of main variables
   let userInput = document.querySelector("#search-form-input");
   let cityHeading = document.querySelector("#city-heading");
   let updatedInput = capitaliseLetter();

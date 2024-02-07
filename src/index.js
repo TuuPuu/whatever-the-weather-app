@@ -102,19 +102,22 @@ function handleSearch(event) {
     return updatedTrimmedInput;
   }
 
-  // function to get Lon an Lat geo code for main api call
-  function getGeoCode(response) {
+  // function to get Lon an Lat geo code for main api call and then use for main temperature fetch
+  function accessWeather(response) {
     function getTemperature(secondResponse) {
       let data = secondResponse.data;
-      // let temperature = Math.round(secondResponse.data.main.temp);
-      console.log(data);
+      let temperature = Math.round(secondResponse.data.main.temp);
+      let calculatedWind = Math.round(secondResponse.data.wind.speed * 10) / 10;
+      let wind = `${calculatedWind} m/s`;
+
+      console.log(wind);
     }
 
     let fetchedLonCode = response.data[0].lon;
     let fetchedLatCode = response.data[0].lat;
 
     let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-    let apiUrlMain = `https://api.openweathermap.org/data/2.5/weather?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}`;
+    let apiUrlMain = `https://api.openweathermap.org/data/2.5/weather?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
     axios.get(apiUrlMain).then(getTemperature);
   }
@@ -129,7 +132,7 @@ function handleSearch(event) {
 
   cityHeading.innerHTML = updatedInput;
 
-  axios.get(apiUrlGeocode).then(getGeoCode);
+  axios.get(apiUrlGeocode).then(accessWeather);
 
   // this is the data that will be fed into the next function, the api call, which runs everytime we recieve this data
   // searchCity(userInput);

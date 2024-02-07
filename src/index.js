@@ -83,6 +83,8 @@ function addTimeOnPage() {
 }
 addTimeOnPage();
 
+// ___________________________________________________________________________________________________________________
+
 /*SEARCH FORM CODE*/
 
 // FUNCTION TO ACCESS INPUT AND CHANGE CITY NAME ELEMENT BASED ON INPUT
@@ -221,9 +223,4 @@ function handleSearch(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
-// function to get temperature based on api call
-
-// function searchCity(city) {
-//   let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-//   let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},{state code},{country code}&limit={limit}&appid={API key}`;
-// }
+// ___________________________________________________________________________________________________________________

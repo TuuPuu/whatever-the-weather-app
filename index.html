@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -25,12 +26,13 @@
 
     <!-- CONTENT -->
     <div class="main-container">
-      <form class="search-form">
+      <form class="search-form" id="search-form">
         <input
           type="search"
           placeholder=" ʕ •ᴥ•ʔ Please enter your city..."
           required
           class="search-bar"
+          id="search-form-input"
         />
 
         <input
@@ -47,8 +49,8 @@
           <!-- city search result -->
           <div class="search-container">
             <div class="search-result">
-              <h1 class="city">Paris</h1>
-              <p class="date">Saturday 16:12</p>
+              <h1 class="city" id="city-heading">Paris</h1>
+              <p class="date" id="current-date">Saturday 16:12</p>
               <div class="humidity-wind">
                 <p>
                   <img
@@ -56,7 +58,8 @@
                     alt="Humidity icon"
                     class="humidity-icons"
                   />
-                  Humidity: <span class="humidity-data">87%</span>
+                  Humidity:
+                  <span class="humidity-data" id="humidity">87%</span>
                 </p>
                 <p>
                   <img
@@ -64,7 +67,7 @@
                     alt="Wind icon"
                     class="humidity-icons"
                   />
-                  Wind: <span class="humidity-data">7.2km/h</span>
+                  Wind: <span class="humidity-data" id="wind">7.2km/h</span>
                 </p>
               </div>
             </div>
@@ -75,26 +78,38 @@
             <div class="secondary-weather-container">
               <!-- day 01 -->
               <div class="secondary-weather">
-                <div class="secondary-weather-icon-text">day +1</div>
+                <div class="secondary-weather-icon-text" id="temperature-one">
+                  10
+                </div>
                 <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-day" id="day-one">Mon</div>
               </div>
 
               <!-- day 02 -->
               <div class="secondary-weather">
-                <div class="secondary-weather-icon-text">day +2</div>
+                <div class="secondary-weather-icon-text" id="temperature-two">
+                  12
+                </div>
                 <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-day" id="day-two">Tues</div>
               </div>
 
               <!-- day 03 -->
               <div class="secondary-weather">
-                <div class="secondary-weather-icon-text">day +3</div>
+                <div class="secondary-weather-icon-text" id="temperature-three">
+                  14
+                </div>
                 <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-day" id="day-three">Weds</div>
               </div>
 
               <!-- day 04 -->
               <div class="secondary-weather">
-                <div class="secondary-weather-icon-text">day +4</div>
+                <div class="secondary-weather-icon-text" id="temperature-four">
+                  16
+                </div>
                 <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-day" id="day-three">Thurs</div>
               </div>
             </div>
           </div>
@@ -111,8 +126,10 @@
               </div>
             </div>
             <div class="temperature-info">
-              <h2><span class="temperature">12</span>&deg;C</h2>
-              <p>moderate rain</p>
+              <h2>
+                <span class="temperature" id="temperature">12</span>&deg;C
+              </h2>
+              <p id="weather-description">moderate rain</p>
             </div>
           </div>
         </div>

@@ -209,7 +209,7 @@ function handleSearch(event) {
   let updatedInput = capitaliseLetter();
   let citySearch = userInput.value;
   let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-  let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
+  let apiUrlGeocode = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
   // cityName.innerHTML = updatedInput;
 

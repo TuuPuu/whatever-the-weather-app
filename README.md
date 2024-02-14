@@ -13,7 +13,7 @@ By leveraging weather APIs and modern frontend technologies, this project aims t
 
 Throughout the development of this project, several key learning points were encountered. These include:
 
-<ol>
+<ul>
 <li>
 Utilising weather APIs to fetch real-time weather data. (Axios)
 </li>
@@ -26,7 +26,7 @@ Enhancing user experience through intuitive UI/UX design and interactive feature
 <li>
 Practicing modular and organized coding practices for maintainability and scalability.
 </li>
-</ol>
+</ul>
 
 
 

@@ -83,7 +83,7 @@ function addTimeOnPage() {
 }
 addTimeOnPage();
 
-// ___________________________________________________________________________________________________________________
+// ______________________________________________________________________________________________________________
 
 /*SEARCH FORM CODE*/
 
@@ -91,7 +91,7 @@ addTimeOnPage();
 function handleSearch(event) {
   event.preventDefault();
 
-  // FUNCTION TO CAPITALISE ACCESED USER INPUT
+  // FUNCTION TO CAPITALISE ACCESED USER INPUTß
   function capitaliseLetter() {
     let submittedUserInput = userInput.value;
     const trimmedInput = submittedUserInput.trim();
@@ -211,16 +211,125 @@ function handleSearch(event) {
   let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
   let apiUrlGeocode = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
-  // cityName.innerHTML = updatedInput;
-
   // FIRST API CALL - to get geo codes
   axios.get(apiUrlGeocode).then(accessWeather);
-
-  // this is the data that will be fed into the next function, the api call, which runs everytime we recieve this data
-  // searchCity(userInput);
 }
 
+//______________________________________________________________________________________________________________
+
+/*DOM LISTEN OUT FOR USER SEARCH*/
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
-// ___________________________________________________________________________________________________________________
+//______________________________________________________________________________________________________________
+
+/* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load*/
+function loadup() {
+  // console.log("working");
+
+  // list of main variables
+
+  let cityName = document.querySelector("#city-heading");
+  let citySearch = "London";
+  let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+  let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
+
+  axios.get(apiUrlGeocode).then(accessWeather);
+
+  function accessWeather(response) {
+    // SECOND API CALL- to get temp
+    function getTemperatureData(secondResponse) {
+      // DOM manipulation function
+      function changeTemperatureInfo() {
+        cityName.innerHTML = citySearch;
+
+        humidityElement.innerHTML = humidity;
+        windElement.innerHTML = wind;
+
+        temperatureOne.innerHTML = dayOneTemperature;
+        temperatureTwo.innerHTML = dayTwoTemperature;
+        temperatureThree.innerHTML = dayThreeTemperature;
+        temperatureFour.innerHTML = dayFourTemperature;
+
+        temperatureElement.innerHTML = mainTemperature;
+        weatherDescriptionElement.innerHTML = weatherDescription;
+      }
+
+      // current day data
+      let data = secondResponse.data;
+      let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
+      let fetchedWind =
+        Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
+      let fetchedHumidity = secondResponse.data.list[0].main.humidity;
+      let wind = `${fetchedWind}m/s`;
+      let humidity = `${fetchedHumidity}%`;
+      let weatherDescription =
+        secondResponse.data.list[0].weather[0].description;
+      let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
+      let weatherConditionId = secondResponse.data.list[0].weather[0].id;
+
+      // day +1 data
+      let dayOneTemperature = `${Math.round(
+        secondResponse.data.list[8].main.temp
+      )}&deg;C`;
+      let dayOneWeatherConditionMain =
+        secondResponse.data.list[8].weather[0].main;
+      let dayOneWeatherConditionId = secondResponse.data.list[8].weather[0].id;
+
+      // day +2 data
+      let dayTwoTemperature = `${Math.round(
+        secondResponse.data.list[16].main.temp
+      )}&deg;C`;
+      let dayTwoWeatherConditionMain =
+        secondResponse.data.list[16].weather[0].main;
+      let dayTwoWeatherConditionId = secondResponse.data.list[16].weather[0].id;
+
+      // day +3 data
+      let dayThreeTemperature = `${Math.round(
+        secondResponse.data.list[24].main.temp
+      )}&deg;C`;
+      let dayThreeWeatherConditionMain =
+        secondResponse.data.list[24].weather[0].main;
+      let dayThreeWeatherConditionId =
+        secondResponse.data.list[24].weather[0].id;
+
+      // day +4 data
+      let dayFourTemperature = `${Math.round(
+        secondResponse.data.list[32].main.temp
+      )}&deg;C`;
+      let dayFourWeatherConditionMain =
+        secondResponse.data.list[32].weather[0].main;
+      let dayFourWeatherConditionId =
+        secondResponse.data.list[32].weather[0].id;
+
+      // DOM variables
+      let temperatureElement = document.querySelector("#temperature");
+      let weatherDescriptionElement = document.querySelector(
+        "#weather-description"
+      );
+      let humidityElement = document.querySelector("#humidity");
+      let windElement = document.querySelector("#wind");
+      let dayOne = document.querySelector("#day-one");
+      let dayTwo = document.querySelector("#day-two");
+      let dayThree = document.querySelector("#day-three");
+      let dayFour = document.querySelector("#day-four");
+      let temperatureOne = document.querySelector("#temperature-one");
+      let temperatureTwo = document.querySelector("#temperature-two");
+      let temperatureThree = document.querySelector("#temperature-three");
+      let temperatureFour = document.querySelector("#temperature-four");
+
+      changeTemperatureInfo();
+    }
+
+    let fetchedLonCode = response.data[0].lon;
+    let fetchedLatCode = response.data[0].lat;
+
+    let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+    let apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
+
+    axios.get(apiUrlMain).then(getTemperatureData);
+  }
+}
+window.onload = loadup();
+
+//______________________________________________________________________________________________________________

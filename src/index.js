@@ -1,6 +1,6 @@
-/* ADDING TIME INTO CODE */
+/* ADDING DEFAULT TIME INTO CODE */
 
-function addTimeOnPage() {
+/*function addTimeOnPage() {
   // function to get the time and date data
   function getDateAndTime() {
     let newDate = new Date();
@@ -81,7 +81,7 @@ function addTimeOnPage() {
   let currentDate = document.querySelector("#current-date");
   currentDate.innerHTML = `${fetchedDate}`;
 }
-addTimeOnPage();
+addTimeOnPage();*/
 
 // ______________________________________________________________________________________________________________
 
@@ -108,6 +108,81 @@ function handleSearch(event) {
   function accessWeather(response) {
     // SECOND API CALL- to get temp
     function getTemperatureData(secondResponse) {
+      // Time manipulation
+      function changeTimeInfo() {
+        // OK SO THE TIME CODE FROM ARRAY IS NOT CURRENT TIME, ITS FORECAST TIME, SO USE A NEW API TO CALCULATE WORLD TIME
+        // current time data
+        let timestamp = secondResponse.data.list[0].dt;
+        let newDate = new Date(timestamp * 1000);
+        let hours = newDate.getHours();
+        let minutes = newDate.getMinutes();
+
+        let data = secondResponse.data;
+        console.log(data);
+
+        // GETTING THE TIME
+        let listOfHours = [
+          "00",
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+        ];
+
+        let listOfMinutes = [
+          "00",
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+        ];
+        let currentHour = listOfHours[newDate.getHours()];
+        let currentMinute = newDate.getMinutes();
+
+        // code to fix minute print error
+        if (currentMinute <= 9) {
+          currentMinute = listOfMinutes[currentMinute];
+        }
+
+        // here is the current time
+        let searchedTime = `${currentHour}:${currentMinute}`;
+
+        // console.log(searchedTime);
+
+        // temp variables for date
+        // let currentTime = Date.now();
+        // let timezone1 = ";";
+        // let searchedDate = new Date(currentTime + timezoneInMilliseconds);
+        // let mainDay = searchedDate.getDate();
+
+        // let data = secondResponse.data;
+        // console.log(data);
+      }
+
       // DOM manipulation function
       function changeTemperatureInfo() {
         cityName.innerHTML = updatedInput;
@@ -125,7 +200,7 @@ function handleSearch(event) {
       }
 
       // current day data
-      let data = secondResponse.data;
+      // let data = secondResponse.data;
       let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
       let fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
@@ -187,6 +262,7 @@ function handleSearch(event) {
       let temperatureThree = document.querySelector("#temperature-three");
       let temperatureFour = document.querySelector("#temperature-four");
 
+      changeTimeInfo();
       changeTemperatureInfo();
       // console.log(data);
       // console.log(dayFourWeatherConditionId);

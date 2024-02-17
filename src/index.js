@@ -110,77 +110,26 @@ function handleSearch(event) {
     function getTemperatureData(secondResponse) {
       // Time manipulation
       function changeTimeInfo() {
-        // OK SO THE TIME CODE FROM ARRAY IS NOT CURRENT TIME, ITS FORECAST TIME, SO USE A NEW API TO CALCULATE WORLD TIME
-        // current time data
-        let timestamp = secondResponse.data.list[0].dt;
-        let newDate = new Date(timestamp * 1000);
-        let hours = newDate.getHours();
-        let minutes = newDate.getMinutes();
+        // OK SO THE TIME CODE FROM ARRAY IS NOT CURRENT TIME, ITS FORECAST TIME, SO USE A NEW API TO CALCULATE WORLD TIME- this is still broken
 
-        let data = secondResponse.data;
-        console.log(data);
+        function getTime(thirdResponse) {
+          let data = thirdResponse.data;
+          let timestamp = thirdResponse.data.time;
+          let date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+          let dateString = date.toLocaleString(); // Convert date to local date and time string
+          const [datePart, timePart] = dateString.split(", ");
+          const time = timePart.split(":").slice(0, 2).join(":");
+          console.log(time);
 
-        // GETTING THE TIME
-        let listOfHours = [
-          "00",
-          "01",
-          "02",
-          "03",
-          "04",
-          "05",
-          "06",
-          "07",
-          "08",
-          "09",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
-          "22",
-          "23",
-        ];
-
-        let listOfMinutes = [
-          "00",
-          "01",
-          "02",
-          "03",
-          "04",
-          "05",
-          "06",
-          "07",
-          "08",
-          "09",
-        ];
-        let currentHour = listOfHours[newDate.getHours()];
-        let currentMinute = newDate.getMinutes();
-
-        // code to fix minute print error
-        if (currentMinute <= 9) {
-          currentMinute = listOfMinutes[currentMinute];
+          // console.log(data);
         }
 
-        // here is the current time
-        let searchedTime = `${currentHour}:${currentMinute}`;
+        // NEW API CALL FOR TIME
+        let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+        let apiUrlTime = `https://api.shecodes.io/weather/v1/current?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${timeApiKey}`;
 
-        // console.log(searchedTime);
-
-        // temp variables for date
-        // let currentTime = Date.now();
-        // let timezone1 = ";";
-        // let searchedDate = new Date(currentTime + timezoneInMilliseconds);
-        // let mainDay = searchedDate.getDate();
-
-        // let data = secondResponse.data;
-        // console.log(data);
+        // Axios call for Time
+        axios.get(apiUrlTime).then(getTime);
       }
 
       // DOM manipulation function

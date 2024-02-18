@@ -92,7 +92,7 @@ function handleSearch(event) {
   event.preventDefault();
 
   // FUNCTION TO CHANGE DATE AND TIME - IN TESTING
-  function accessTime(thirdResponse) {
+  function accessTime() {
     // FUNCTION TO GET TIMEZONE FOR THIRD API CALL
     function getTimezone() {
       // Array of API Timezones
@@ -462,15 +462,16 @@ function handleSearch(event) {
       return timeZoneName;
     }
 
+    // function to get the searched time and manipulate time DOM -
+    function getSearchedTime(thirdResponse) {
+      console.log("this world");
+    }
+
     let timeZone = getTimezone();
-    console.log(timeZone);
+    let timeApiUrl = `http://worldtimeapi.org/api/timezone/${timeZone}`;
 
-    // console.log(data);
-    // console.log(searchedTime);
-
-    let data = thirdResponse.data;
-    let unixTimestamp = thirdResponse.data.time;
-    // Unix timestamp value
+    // THIRD API CALL FOR TIME
+    axios.get(timeApiUrl).then(getSearchedTime);
   }
 
   // FUNCTION TO CAPITALISE ACCESED USER INPUT
@@ -490,39 +491,6 @@ function handleSearch(event) {
   function accessWeather(response) {
     // SECOND API CALL- to get temp
     function getTemperatureData(secondResponse) {
-      // Time manipulation
-      function changeTimeInfo() {
-        // OK SO THE TIME CODE FROM ARRAY IS NOT CURRENT TIME, ITS FORECAST TIME, SO USE A NEW API TO CALCULATE WORLD TIME- this is still broken
-
-        function getTime(thirdResponse) {
-          // let data = thirdResponse.data;
-          // let timestamp = thirdResponse.data.time;
-          // let searchedDate = new Date(timestamp * 1000);
-
-          // let hours = searchedDate.getHours();
-          // let minutes = searchedDate.getMinutes();
-          // let day = searchedDate.getDay();
-          // let searchedTime = `${hours}:${minutes}`;
-          // let date = new Date(timestamp * 1000);
-          // let dateString = date.toLocaleString();
-          // const [datePart, timePart] = dateString.split(", ");
-          // const time = timePart.split(":").slice(0, 2).join(":");
-          // console.log(time);
-
-          console.log("old test");
-        }
-
-        // NEW API CALL FOR TIME
-        // Make a GET request using fetch
-
-        // let city = "paris";
-        // let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-        // let apiUrlTime = `https://api.shecodes.io/weather/v1/current?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${timeApiKey}`;
-
-        // Axios call for Time
-        axios.get(apiUrlTime).then(getTime);
-      }
-
       // DOM manipulation function
       function changeTemperatureInfo() {
         cityName.innerHTML = updatedInput;
@@ -602,7 +570,6 @@ function handleSearch(event) {
       let temperatureThree = document.querySelector("#temperature-three");
       let temperatureFour = document.querySelector("#temperature-four");
 
-      changeTimeInfo();
       changeTemperatureInfo();
       // console.log(data);
       // console.log(dayFourWeatherConditionId);
@@ -619,23 +586,21 @@ function handleSearch(event) {
     axios.get(apiUrlMain).then(getTemperatureData);
   }
 
-  // list of main variables
+  // list of main global variables
   let userInput = document.querySelector("#search-form-input");
   let cityName = document.querySelector("#city-heading");
   let updatedInput = capitaliseLetter();
   let citySearch = userInput.value;
   let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
   let apiUrlGeocode = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
-  let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-  let apiUrlTime = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}`;
 
   // FIRST API CALL - to get geo codes
   axios.get(apiUrlGeocode).then(accessWeather);
 
   // SECOND API CALL - found in accessWeather function
 
-  // THIRD API CALL FOR TIME - to get searched city date
-  axios.get(apiUrlTime).then(accessTime);
+  // THIRD API CALL FOR TIME - found in accessTime function
+  accessTime();
 }
 
 //______________________________________________________________________________________________________________

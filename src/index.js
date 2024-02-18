@@ -1,6 +1,6 @@
-/* ADDING TIME INTO CODE */
+/* ADDING DEFAULT TIME INTO CODE */
 
-function addTimeOnPage() {
+/*function addTimeOnPage() {
   // function to get the time and date data
   function getDateAndTime() {
     let newDate = new Date();
@@ -81,7 +81,7 @@ function addTimeOnPage() {
   let currentDate = document.querySelector("#current-date");
   currentDate.innerHTML = `${fetchedDate}`;
 }
-addTimeOnPage();
+addTimeOnPage();*/
 
 // ______________________________________________________________________________________________________________
 
@@ -91,7 +91,103 @@ addTimeOnPage();
 function handleSearch(event) {
   event.preventDefault();
 
-  // FUNCTION TO CAPITALISE ACCESED USER INPUTß
+  // FUNCTION TO CHANGE DATE AND TIME
+  function accessTime() {
+    // FUNCTION TO GET SEARCHED TIME AND MANIPULATE DOM
+    function getSearchedTime(thirdResponse) {
+      let date = new Date(thirdResponse.data.time * 1000);
+      let dateElement = document.querySelector("#current-date");
+      let dayOne = document.querySelector("#day-one");
+      let dayTwo = document.querySelector("#day-two");
+      let dayThree = document.querySelector("#day-three");
+      let dayFour = document.querySelector("#day-four");
+
+      let minutes = date.getMinutes();
+      let hours = date.getHours();
+      let days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      // GETTING THE TIME
+      let listOfHours = [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+      ];
+
+      let listOfMinutes = [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+      ];
+
+      let currentHour = listOfHours[hours];
+      let currentMinute = minutes;
+
+      // code to fix minute print error
+      if (currentMinute <= 9) {
+        currentMinute = listOfMinutes[currentMinute];
+      }
+
+      // here is the current time
+      let currentTime = `${currentHour}:${currentMinute}`;
+
+      let day = days[date.getDay()];
+      let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+      let mainDayArrayNumber = days.indexOf(day);
+      let searchedDate = `${day} ${currentTime}`;
+
+      // DOM manipulation
+      dateElement.innerHTML = searchedDate;
+      dayOne.innerHTML = shortDays[mainDayArrayNumber + 1];
+      dayTwo.innerHTML = shortDays[mainDayArrayNumber + 2];
+      dayThree.innerHTML = shortDays[mainDayArrayNumber + 3];
+      dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
+    }
+
+    let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+    let timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
+    `;
+
+    // THIRD API CALL FOR TIME
+    axios.get(timeApiUrl).then(getSearchedTime);
+  }
+
+  // FUNCTION TO CAPITALISE ACCESED USER INPUT
   function capitaliseLetter() {
     let submittedUserInput = userInput.value;
     const trimmedInput = submittedUserInput.trim();
@@ -125,7 +221,7 @@ function handleSearch(event) {
       }
 
       // current day data
-      let data = secondResponse.data;
+      // let data = secondResponse.data;
       let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
       let fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
@@ -178,10 +274,7 @@ function handleSearch(event) {
       );
       let humidityElement = document.querySelector("#humidity");
       let windElement = document.querySelector("#wind");
-      let dayOne = document.querySelector("#day-one");
-      let dayTwo = document.querySelector("#day-two");
-      let dayThree = document.querySelector("#day-three");
-      let dayFour = document.querySelector("#day-four");
+
       let temperatureOne = document.querySelector("#temperature-one");
       let temperatureTwo = document.querySelector("#temperature-two");
       let temperatureThree = document.querySelector("#temperature-three");
@@ -203,7 +296,7 @@ function handleSearch(event) {
     axios.get(apiUrlMain).then(getTemperatureData);
   }
 
-  // list of main variables
+  // list of main global variables
   let userInput = document.querySelector("#search-form-input");
   let cityName = document.querySelector("#city-heading");
   let updatedInput = capitaliseLetter();
@@ -213,6 +306,11 @@ function handleSearch(event) {
 
   // FIRST API CALL - to get geo codes
   axios.get(apiUrlGeocode).then(accessWeather);
+
+  // SECOND API CALL - found in accessWeather function
+
+  // THIRD API CALL FOR TIME - found in accessTime function
+  accessTime();
 }
 
 //______________________________________________________________________________________________________________
@@ -235,6 +333,107 @@ function loadup() {
   let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
   axios.get(apiUrlGeocode).then(accessWeather);
+
+  // FUNCTION TO CHANGE DATE AND TIME
+  // FUNCTION TO GET SEARCHED TIME AND MANIPULATE DOM
+  function getSearchedTime(thirdResponse) {
+    let date = new Date(thirdResponse.data.time * 1000);
+    let dateElement = document.querySelector("#current-date");
+    let dayOne = document.querySelector("#day-one");
+    let dayTwo = document.querySelector("#day-two");
+    let dayThree = document.querySelector("#day-three");
+    let dayFour = document.querySelector("#day-four");
+
+    let minutes = date.getMinutes();
+    let hours = date.getHours();
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    // GETTING THE TIME
+    let listOfHours = [
+      "00",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+    ];
+
+    let listOfMinutes = [
+      "00",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+    ];
+
+    let currentHour = listOfHours[hours];
+    let currentMinute = minutes;
+
+    // code to fix minute print error
+    if (currentMinute <= 9) {
+      currentMinute = listOfMinutes[currentMinute];
+    }
+
+    // here is the current time
+    let currentTime = `${currentHour}:${currentMinute}`;
+
+    let day = days[date.getDay()];
+    let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+    let mainDayArrayNumber = days.indexOf(day);
+    let searchedDate = `${day} ${currentTime}`;
+
+    // DOM manipulation
+    dateElement.innerHTML = searchedDate;
+    dayOne.innerHTML = shortDays[mainDayArrayNumber + 1];
+    dayTwo.innerHTML = shortDays[mainDayArrayNumber + 2];
+    dayThree.innerHTML = shortDays[mainDayArrayNumber + 3];
+    dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
+
+    console.log(mainDayArrayNumber);
+
+    // Time format fix
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+  }
+
+  let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+  let timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
+    `;
+
+  // THIRD API CALL FOR TIME
+  axios.get(timeApiUrl).then(getSearchedTime);
 
   function accessWeather(response) {
     // SECOND API CALL- to get temp

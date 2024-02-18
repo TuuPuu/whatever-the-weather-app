@@ -113,10 +113,63 @@ function handleSearch(event) {
         "Friday",
         "Saturday",
       ];
+
+      // GETTING THE TIME
+      let listOfHours = [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+      ];
+
+      let listOfMinutes = [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+      ];
+
+      let currentHour = listOfHours[hours];
+      let currentMinute = minutes;
+
+      // code to fix minute print error
+      if (currentMinute <= 9) {
+        currentMinute = listOfMinutes[currentMinute];
+      }
+
+      // here is the current time
+      let currentTime = `${currentHour}:${currentMinute}`;
+
       let day = days[date.getDay()];
       let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-      let searchedDate = `${day} ${hours}:${minutes}`;
       let mainDayArrayNumber = days.indexOf(day);
+      let searchedDate = `${day} ${currentTime}`;
 
       // DOM manipulation
       dateElement.innerHTML = searchedDate;
@@ -124,11 +177,6 @@ function handleSearch(event) {
       dayTwo.innerHTML = shortDays[mainDayArrayNumber + 2];
       dayThree.innerHTML = shortDays[mainDayArrayNumber + 3];
       dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
-
-      // Time format fix
-      if (minutes < 10) {
-        minutes = `0${minutes}`;
-      }
     }
 
     let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
@@ -307,10 +355,63 @@ function loadup() {
       "Friday",
       "Saturday",
     ];
+
+    // GETTING THE TIME
+    let listOfHours = [
+      "00",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+    ];
+
+    let listOfMinutes = [
+      "00",
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+    ];
+
+    let currentHour = listOfHours[hours];
+    let currentMinute = minutes;
+
+    // code to fix minute print error
+    if (currentMinute <= 9) {
+      currentMinute = listOfMinutes[currentMinute];
+    }
+
+    // here is the current time
+    let currentTime = `${currentHour}:${currentMinute}`;
+
     let day = days[date.getDay()];
     let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-    let searchedDate = `${day} ${hours}:${minutes}`;
     let mainDayArrayNumber = days.indexOf(day);
+    let searchedDate = `${day} ${currentTime}`;
 
     // DOM manipulation
     dateElement.innerHTML = searchedDate;

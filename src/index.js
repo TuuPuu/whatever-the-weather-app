@@ -529,6 +529,6 @@ function loadup() {
     axios.get(apiUrlMain).then(getTemperatureData);
   }
 }
-window.onload = loadup();
+window.onload = loadup;
 
 //______________________________________________________________________________________________________________

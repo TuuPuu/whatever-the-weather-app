@@ -439,20 +439,6 @@ function loadup() {
     // SECOND API CALL- to get temp
     function getTemperatureData(secondResponse) {
       // DOM manipulation function
-      function changeTemperatureInfo() {
-        cityName.innerHTML = citySearch;
-
-        humidityElement.innerHTML = humidity;
-        windElement.innerHTML = wind;
-
-        temperatureOne.innerHTML = dayOneTemperature;
-        temperatureTwo.innerHTML = dayTwoTemperature;
-        temperatureThree.innerHTML = dayThreeTemperature;
-        temperatureFour.innerHTML = dayFourTemperature;
-
-        temperatureElement.innerHTML = mainTemperature;
-        weatherDescriptionElement.innerHTML = weatherDescription;
-      }
 
       // current day data
       let data = secondResponse.data;
@@ -506,6 +492,7 @@ function loadup() {
       let weatherDescriptionElement = document.querySelector(
         "#weather-description"
       );
+
       let humidityElement = document.querySelector("#humidity");
       let windElement = document.querySelector("#wind");
       let dayOne = document.querySelector("#day-one");
@@ -517,6 +504,20 @@ function loadup() {
       let temperatureThree = document.querySelector("#temperature-three");
       let temperatureFour = document.querySelector("#temperature-four");
 
+      function changeTemperatureInfo() {
+        cityName.innerHTML = "London";
+
+        humidityElement.innerHTML = humidity;
+        windElement.innerHTML = wind;
+
+        temperatureOne.innerHTML = dayOneTemperature;
+        temperatureTwo.innerHTML = dayTwoTemperature;
+        temperatureThree.innerHTML = dayThreeTemperature;
+        temperatureFour.innerHTML = dayFourTemperature;
+
+        temperatureElement.innerHTML = mainTemperature;
+        weatherDescriptionElement.innerHTML = weatherDescription;
+      }
       changeTemperatureInfo();
     }
 

@@ -396,6 +396,7 @@ searchFormElement.addEventListener("submit", handleSearch);
 //______________________________________________________________________________________________________________
 
 /* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load*/
+
 function loadup() {
   // console.log("working");
 

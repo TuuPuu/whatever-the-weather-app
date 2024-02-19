@@ -1,6 +1,36 @@
-// ______________________________________________________________________________________________________________
+/* INFO MODAL CODE */
+function openInfoBox() {
+  // Get the modal
+  let modal = document.getElementById("infoModal");
 
-/*SEARCH FORM CODE*/
+  // Get the button that opens the modal
+  var button = document.getElementById("openModalButton");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  button.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+}
+openInfoBox();
+
+//______________________________________________________________________________________________________________
+
+/* SEARCH FORM CODE */
 
 // FUNCTION TO ACCESS INPUT AND CHANGE CITY NAME ELEMENT BASED ON INPUT
 function handleSearch(event) {
@@ -147,12 +177,6 @@ function handleSearch(event) {
         secondResponse.data.list[0].weather[0].description;
       let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
-      let tempTeddy = document.querySelectorAll("#temp-teddy");
-
-      // test
-      // console.log(weatherConditionMain);
-      // console.log(weatherConditionId);
-      // document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
 
       // changing the main weather icon - Temperature Teddy
       if (weatherConditionMain === "Thunderstorm") {
@@ -207,12 +231,6 @@ function handleSearch(event) {
       )}&deg;C`;
       let dayOneWeatherConditionMain =
         secondResponse.data.list[8].weather[0].main;
-      // let dayOneWeatherConditionId = secondResponse.data.list[8].weather[0].id;
-      // if (dayOneWeatherConditionMain === "Thunderstorm") {
-      //   document.getElementById("day-one-icon").innerHTML = "hi";
-      // }
-
-      console.log(dayOneWeatherConditionMain);
 
       if (
         dayOneWeatherConditionMain === "Thunderstorm" ||
@@ -246,7 +264,7 @@ function handleSearch(event) {
       )}&deg;C`;
       let dayTwoWeatherConditionMain =
         secondResponse.data.list[16].weather[0].main;
-      // let dayTwoWeatherConditionId = secondResponse.data.list[16].weather[0].id;
+
       if (
         dayTwoWeatherConditionMain === "Thunderstorm" ||
         dayTwoWeatherConditionMain === "Drizzle" ||
@@ -279,8 +297,7 @@ function handleSearch(event) {
       )}&deg;C`;
       let dayThreeWeatherConditionMain =
         secondResponse.data.list[24].weather[0].main;
-      // let dayThreeWeatherConditionId =
-      // secondResponse.data.list[24].weather[0].id;
+
       if (
         dayThreeWeatherConditionMain === "Thunderstorm" ||
         dayThreeWeatherConditionMain === "Drizzle" ||
@@ -313,8 +330,7 @@ function handleSearch(event) {
       )}&deg;C`;
       let dayFourWeatherConditionMain =
         secondResponse.data.list[32].weather[0].main;
-      // let dayFourWeatherConditionId =
-      // secondResponse.data.list[32].weather[0].id;
+
       if (
         dayFourWeatherConditionMain === "Thunderstorm" ||
         dayFourWeatherConditionMain === "Drizzle" ||
@@ -355,10 +371,6 @@ function handleSearch(event) {
       let temperatureFour = document.querySelector("#temperature-four");
 
       changeTemperatureInfo();
-      // console.log(data);
-      // console.log(dayFourWeatherConditionId);
-      // console.log(wind);
-      // console.log(humidity);
     }
 
     let fetchedLonCode = response.data[0].lon;
@@ -389,13 +401,13 @@ function handleSearch(event) {
 
 //______________________________________________________________________________________________________________
 
-/*DOM LISTEN OUT FOR USER SEARCH*/
+/* DOM LISTEN OUT FOR USER SEARCH */
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 //______________________________________________________________________________________________________________
 
-/* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load*/
+/* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load */
 
 function loadup() {
   // console.log("working");

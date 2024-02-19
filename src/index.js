@@ -1,91 +1,36 @@
-/* ADDING DEFAULT TIME INTO CODE */
+/* INFO MODAL CODE */
+function openInfoBox() {
+  // Get the modal
+  let modal = document.getElementById("infoModal");
 
-/*function addTimeOnPage() {
-  // function to get the time and date data
-  function getDateAndTime() {
-    let newDate = new Date();
+  // Get the button that opens the modal
+  var button = document.getElementById("openModalButton");
 
-    // GETTING THE DAY
-    let listOfDays = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
 
-    // here is the current day
-    let currentDay = listOfDays[newDate.getDay()];
+  // When the user clicks the button, open the modal
+  button.onclick = function () {
+    modal.style.display = "block";
+  };
 
-    // GETTING THE TIME
-    let listOfHours = [
-      "00",
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-      "19",
-      "20",
-      "21",
-      "22",
-      "23",
-    ];
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
 
-    let listOfMinutes = [
-      "00",
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-    ];
-    let currentHour = listOfHours[newDate.getHours()];
-    let currentMinute = newDate.getMinutes();
-
-    // code to fix minute print error
-    if (currentMinute <= 9) {
-      currentMinute = listOfMinutes[currentMinute];
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
     }
-
-    // here is the current time
-    let currentTime = `${currentHour}:${currentMinute}`;
-
-    // FULL TIME AND DATE HERE
-    let dateAndTime = `${currentDay} ${currentTime}`;
-    return dateAndTime;
-  }
-  let fetchedDate = getDateAndTime();
-
-  // ________________________________________________________________
-  // code to edit HTML
-  let currentDate = document.querySelector("#current-date");
-  currentDate.innerHTML = `${fetchedDate}`;
+  };
 }
-addTimeOnPage();*/
+openInfoBox();
 
-// ______________________________________________________________________________________________________________
+//______________________________________________________________________________________________________________
 
-/*SEARCH FORM CODE*/
+/* SEARCH FORM CODE */
 
 // FUNCTION TO ACCESS INPUT AND CHANGE CITY NAME ELEMENT BASED ON INPUT
 function handleSearch(event) {
@@ -233,13 +178,85 @@ function handleSearch(event) {
       let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
+      // changing the main weather icon - Temperature Teddy
+      if (weatherConditionMain === "Thunderstorm") {
+        document.getElementById("temp-teddy").src = "./assets/thunderstorm.png";
+      } else if (weatherConditionMain === "Drizzle") {
+        document.getElementById("temp-teddy").src = "./assets/showerrain.png";
+      } else if (weatherConditionMain === "Rain") {
+        document.getElementById("temp-teddy").src = "./assets/rain.png";
+      } else if (weatherConditionMain === "Snow") {
+        document.getElementById("temp-teddy").src = "./assets/snow.png";
+      } else if (weatherConditionMain === "Clear") {
+        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+      } else if (
+        weatherConditionMain === "Haze" ||
+        weatherConditionMain === "Mist" ||
+        weatherConditionMain === "Smoke" ||
+        weatherConditionMain === "Dust" ||
+        weatherConditionMain === "Fog" ||
+        weatherConditionMain === "Sand" ||
+        weatherConditionMain === "Ash" ||
+        weatherConditionMain === "Squall" ||
+        weatherConditionMain === "Tornado"
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/fog.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 801
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 802
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 803
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 804
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+      } else {
+        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+      }
+
       // day +1 data
       let dayOneTemperature = `${Math.round(
         secondResponse.data.list[8].main.temp
       )}&deg;C`;
       let dayOneWeatherConditionMain =
         secondResponse.data.list[8].weather[0].main;
-      let dayOneWeatherConditionId = secondResponse.data.list[8].weather[0].id;
+
+      if (
+        dayOneWeatherConditionMain === "Thunderstorm" ||
+        dayOneWeatherConditionMain === "Drizzle" ||
+        dayOneWeatherConditionMain === "Rain"
+      ) {
+        document.getElementById("day-one-icon").innerHTML = "rainy";
+      } else if (dayOneWeatherConditionMain === "Snow") {
+        document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
+      } else if (dayOneWeatherConditionMain === "Clear") {
+        document.getElementById("day-one-icon").innerHTML = "sunny";
+      } else if (
+        dayOneWeatherConditionMain === "Haze" ||
+        dayOneWeatherConditionMain === "Mist" ||
+        dayOneWeatherConditionMain === "Smoke" ||
+        dayOneWeatherConditionMain === "Dust" ||
+        dayOneWeatherConditionMain === "Fog" ||
+        dayOneWeatherConditionMain === "Sand" ||
+        dayOneWeatherConditionMain === "Ash" ||
+        dayOneWeatherConditionMain === "Squall" ||
+        dayOneWeatherConditionMain === "Tornado"
+      ) {
+        document.getElementById("day-one-icon").innerHTML = "foggy";
+      } else if (dayOneWeatherConditionMain === "Clouds") {
+        document.getElementById("day-one-icon").innerHTML = "cloud";
+      }
 
       // day +2 data
       let dayTwoTemperature = `${Math.round(
@@ -247,7 +264,32 @@ function handleSearch(event) {
       )}&deg;C`;
       let dayTwoWeatherConditionMain =
         secondResponse.data.list[16].weather[0].main;
-      let dayTwoWeatherConditionId = secondResponse.data.list[16].weather[0].id;
+
+      if (
+        dayTwoWeatherConditionMain === "Thunderstorm" ||
+        dayTwoWeatherConditionMain === "Drizzle" ||
+        dayTwoWeatherConditionMain === "Rain"
+      ) {
+        document.getElementById("day-two-icon").innerHTML = "rainy";
+      } else if (dayTwoWeatherConditionMain === "Snow") {
+        document.getElementById("day-two-icon").innerHTML = "cloudy_snowing";
+      } else if (dayTwoWeatherConditionMain === "Clear") {
+        document.getElementById("day-two-icon").innerHTML = "sunny";
+      } else if (
+        dayTwoWeatherConditionMain === "Haze" ||
+        dayTwoWeatherConditionMain === "Mist" ||
+        dayTwoWeatherConditionMain === "Smoke" ||
+        dayTwoWeatherConditionMain === "Dust" ||
+        dayTwoWeatherConditionMain === "Fog" ||
+        dayTwoWeatherConditionMain === "Sand" ||
+        dayTwoWeatherConditionMain === "Ash" ||
+        dayTwoWeatherConditionMain === "Squall" ||
+        dayTwoWeatherConditionMain === "Tornado"
+      ) {
+        document.getElementById("day-two-icon").innerHTML = "foggy";
+      } else if (dayTwoWeatherConditionMain === "Clouds") {
+        document.getElementById("day-two-icon").innerHTML = "cloud";
+      }
 
       // day +3 data
       let dayThreeTemperature = `${Math.round(
@@ -255,8 +297,32 @@ function handleSearch(event) {
       )}&deg;C`;
       let dayThreeWeatherConditionMain =
         secondResponse.data.list[24].weather[0].main;
-      let dayThreeWeatherConditionId =
-        secondResponse.data.list[24].weather[0].id;
+
+      if (
+        dayThreeWeatherConditionMain === "Thunderstorm" ||
+        dayThreeWeatherConditionMain === "Drizzle" ||
+        dayThreeWeatherConditionMain === "Rain"
+      ) {
+        document.getElementById("day-three-icon").innerHTML = "rainy";
+      } else if (dayThreeWeatherConditionMain === "Snow") {
+        document.getElementById("day-three-icon").innerHTML = "cloudy_snowing";
+      } else if (dayThreeWeatherConditionMain === "Clear") {
+        document.getElementById("day-three-icon").innerHTML = "sunny";
+      } else if (
+        dayThreeWeatherConditionMain === "Haze" ||
+        dayThreeWeatherConditionMain === "Mist" ||
+        dayThreeWeatherConditionMain === "Smoke" ||
+        dayThreeWeatherConditionMain === "Dust" ||
+        dayThreeWeatherConditionMain === "Fog" ||
+        dayThreeWeatherConditionMain === "Sand" ||
+        dayThreeWeatherConditionMain === "Ash" ||
+        dayThreeWeatherConditionMain === "Squall" ||
+        dayThreeWeatherConditionMain === "Tornado"
+      ) {
+        document.getElementById("day-three-icon").innerHTML = "foggy";
+      } else if (dayThreeWeatherConditionMain === "Clouds") {
+        document.getElementById("day-three-icon").innerHTML = "cloud";
+      }
 
       // day +4 data
       let dayFourTemperature = `${Math.round(
@@ -264,8 +330,32 @@ function handleSearch(event) {
       )}&deg;C`;
       let dayFourWeatherConditionMain =
         secondResponse.data.list[32].weather[0].main;
-      let dayFourWeatherConditionId =
-        secondResponse.data.list[32].weather[0].id;
+
+      if (
+        dayFourWeatherConditionMain === "Thunderstorm" ||
+        dayFourWeatherConditionMain === "Drizzle" ||
+        dayFourWeatherConditionMain === "Rain"
+      ) {
+        document.getElementById("day-four-icon").innerHTML = "rainy";
+      } else if (dayFourWeatherConditionMain === "Snow") {
+        document.getElementById("day-four-icon").innerHTML = "cloudy_snowing";
+      } else if (dayFourWeatherConditionMain === "Clear") {
+        document.getElementById("day-four-icon").innerHTML = "sunny";
+      } else if (
+        dayFourWeatherConditionMain === "Haze" ||
+        dayFourWeatherConditionMain === "Mist" ||
+        dayFourWeatherConditionMain === "Smoke" ||
+        dayFourWeatherConditionMain === "Dust" ||
+        dayFourWeatherConditionMain === "Fog" ||
+        dayFourWeatherConditionMain === "Sand" ||
+        dayFourWeatherConditionMain === "Ash" ||
+        dayFourWeatherConditionMain === "Squall" ||
+        dayFourWeatherConditionMain === "Tornado"
+      ) {
+        document.getElementById("day-four-icon").innerHTML = "foggy";
+      } else if (dayFourWeatherConditionMain === "Clouds") {
+        document.getElementById("day-four-icon").innerHTML = "cloud";
+      }
 
       // DOM variables
       let temperatureElement = document.querySelector("#temperature");
@@ -281,10 +371,6 @@ function handleSearch(event) {
       let temperatureFour = document.querySelector("#temperature-four");
 
       changeTemperatureInfo();
-      // console.log(data);
-      // console.log(dayFourWeatherConditionId);
-      // console.log(wind);
-      // console.log(humidity);
     }
 
     let fetchedLonCode = response.data[0].lon;
@@ -315,13 +401,14 @@ function handleSearch(event) {
 
 //______________________________________________________________________________________________________________
 
-/*DOM LISTEN OUT FOR USER SEARCH*/
+/* DOM LISTEN OUT FOR USER SEARCH */
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 //______________________________________________________________________________________________________________
 
-/* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load*/
+/* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load */
+
 function loadup() {
   // console.log("working");
 
@@ -529,6 +616,7 @@ function loadup() {
 
     axios.get(apiUrlMain).then(getTemperatureData);
   }
+  openInfoBox();
 }
 window.onload = loadup;
 

@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -82,7 +89,11 @@
                   class="secondary-weather-icon-text"
                   id="temperature-one"
                 ></div>
-                <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-icon">
+                  <span class="material-symbols-outlined" id="day-one-icon">
+                    sunny
+                  </span>
+                </div>
                 <div class="secondary-weather-day" id="day-one"></div>
               </div>
 
@@ -92,7 +103,11 @@
                   class="secondary-weather-icon-text"
                   id="temperature-two"
                 ></div>
-                <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-icon">
+                  <span class="material-symbols-outlined" id="day-two-icon">
+                    sunny
+                  </span>
+                </div>
                 <div class="secondary-weather-day" id="day-two"></div>
               </div>
 
@@ -102,7 +117,11 @@
                   class="secondary-weather-icon-text"
                   id="temperature-three"
                 ></div>
-                <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-icon">
+                  <span class="material-symbols-outlined" id="day-three-icon">
+                    sunny
+                  </span>
+                </div>
                 <div class="secondary-weather-day" id="day-three"></div>
               </div>
 
@@ -112,7 +131,11 @@
                   class="secondary-weather-icon-text"
                   id="temperature-four"
                 ></div>
-                <div class="secondary-weather-icon">🌞</div>
+                <div class="secondary-weather-icon">
+                  <span class="material-symbols-outlined" id="day-four-icon">
+                    sunny
+                  </span>
+                </div>
                 <div class="secondary-weather-day" id="day-four"></div>
               </div>
             </div>
@@ -126,6 +149,7 @@
                   src="/assets/clearsky.PNG"
                   alt="Temp Teddy Weather icon illustration"
                   class="main-weather-icon"
+                  id="temp-teddy"
                 />
               </div>
             </div>
@@ -136,6 +160,30 @@
           </div>
         </div>
       </main>
+
+      <!-- INFO MODAL -->
+      <div id="infoModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close"> &times; </span>
+          <h2>✨ Welcome! ✨</h2>
+          <p>Temperature Teddy has you, <em>Whatever the Weather</em></p>
+          <hr />
+
+          <ul>
+            <br />
+            <li>Click on the search bar</li>
+            <br />
+            <li>Enter you <span>city</span> of choice</li>
+            <br />
+            <li>Ready? Now hit the <span>search button</span></li>
+            <br />
+
+            <p><strong>Enjoy your weather details! 🌈</strong></p>
+            <p>✿ ʕ •ᴥ•ʔ</p>
+          </ul>
+        </div>
+      </div>
 
       <footer>
         <div class="footer-text">
@@ -172,7 +220,7 @@
           <a href="https://www.youtube.com/@tupuart" target="_blank"
             ><button class="youtube"></button
           ></a>
-          <button></button>
+          <button id="openModalButton"></button>
         </div>
       </footer>
     </div>

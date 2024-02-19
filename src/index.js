@@ -270,11 +270,11 @@ function handleSearch(event) {
         dayTwoWeatherConditionMain === "Drizzle" ||
         dayTwoWeatherConditionMain === "Rain"
       ) {
-        document.getElementById("day-one-icon").innerHTML = "rainy";
+        document.getElementById("day-two-icon").innerHTML = "rainy";
       } else if (dayTwoWeatherConditionMain === "Snow") {
-        document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
+        document.getElementById("day-two-icon").innerHTML = "cloudy_snowing";
       } else if (dayTwoWeatherConditionMain === "Clear") {
-        document.getElementById("day-one-icon").innerHTML = "sunny";
+        document.getElementById("day-two-icon").innerHTML = "sunny";
       } else if (
         dayTwoWeatherConditionMain === "Haze" ||
         dayTwoWeatherConditionMain === "Mist" ||
@@ -286,9 +286,9 @@ function handleSearch(event) {
         dayTwoWeatherConditionMain === "Squall" ||
         dayTwoWeatherConditionMain === "Tornado"
       ) {
-        document.getElementById("day-one-icon").innerHTML = "foggy";
+        document.getElementById("day-two-icon").innerHTML = "foggy";
       } else if (dayTwoWeatherConditionMain === "Clouds") {
-        document.getElementById("day-one-icon").innerHTML = "cloud";
+        document.getElementById("day-two-icon").innerHTML = "cloud";
       }
 
       // day +3 data
@@ -303,11 +303,11 @@ function handleSearch(event) {
         dayThreeWeatherConditionMain === "Drizzle" ||
         dayThreeWeatherConditionMain === "Rain"
       ) {
-        document.getElementById("day-one-icon").innerHTML = "rainy";
+        document.getElementById("day-three-icon").innerHTML = "rainy";
       } else if (dayThreeWeatherConditionMain === "Snow") {
-        document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
+        document.getElementById("day-three-icon").innerHTML = "cloudy_snowing";
       } else if (dayThreeWeatherConditionMain === "Clear") {
-        document.getElementById("day-one-icon").innerHTML = "sunny";
+        document.getElementById("day-three-icon").innerHTML = "sunny";
       } else if (
         dayThreeWeatherConditionMain === "Haze" ||
         dayThreeWeatherConditionMain === "Mist" ||
@@ -319,9 +319,9 @@ function handleSearch(event) {
         dayThreeWeatherConditionMain === "Squall" ||
         dayThreeWeatherConditionMain === "Tornado"
       ) {
-        document.getElementById("day-one-icon").innerHTML = "foggy";
+        document.getElementById("day-three-icon").innerHTML = "foggy";
       } else if (dayThreeWeatherConditionMain === "Clouds") {
-        document.getElementById("day-one-icon").innerHTML = "cloud";
+        document.getElementById("day-three-icon").innerHTML = "cloud";
       }
 
       // day +4 data
@@ -336,11 +336,11 @@ function handleSearch(event) {
         dayFourWeatherConditionMain === "Drizzle" ||
         dayFourWeatherConditionMain === "Rain"
       ) {
-        document.getElementById("day-one-icon").innerHTML = "rainy";
+        document.getElementById("day-four-icon").innerHTML = "rainy";
       } else if (dayFourWeatherConditionMain === "Snow") {
-        document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
+        document.getElementById("day-four-icon").innerHTML = "cloudy_snowing";
       } else if (dayFourWeatherConditionMain === "Clear") {
-        document.getElementById("day-one-icon").innerHTML = "sunny";
+        document.getElementById("day-four-icon").innerHTML = "sunny";
       } else if (
         dayFourWeatherConditionMain === "Haze" ||
         dayFourWeatherConditionMain === "Mist" ||
@@ -352,9 +352,9 @@ function handleSearch(event) {
         dayFourWeatherConditionMain === "Squall" ||
         dayFourWeatherConditionMain === "Tornado"
       ) {
-        document.getElementById("day-one-icon").innerHTML = "foggy";
+        document.getElementById("day-four-icon").innerHTML = "foggy";
       } else if (dayFourWeatherConditionMain === "Clouds") {
-        document.getElementById("day-one-icon").innerHTML = "cloud";
+        document.getElementById("day-four-icon").innerHTML = "cloud";
       }
 
       // DOM variables
@@ -616,6 +616,7 @@ function loadup() {
 
     axios.get(apiUrlMain).then(getTemperatureData);
   }
+  openInfoBox();
 }
 window.onload = loadup;
 

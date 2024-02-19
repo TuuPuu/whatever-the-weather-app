@@ -1,88 +1,3 @@
-/* ADDING DEFAULT TIME INTO CODE */
-
-/*function addTimeOnPage() {
-  // function to get the time and date data
-  function getDateAndTime() {
-    let newDate = new Date();
-
-    // GETTING THE DAY
-    let listOfDays = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-
-    // here is the current day
-    let currentDay = listOfDays[newDate.getDay()];
-
-    // GETTING THE TIME
-    let listOfHours = [
-      "00",
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-      "19",
-      "20",
-      "21",
-      "22",
-      "23",
-    ];
-
-    let listOfMinutes = [
-      "00",
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-    ];
-    let currentHour = listOfHours[newDate.getHours()];
-    let currentMinute = newDate.getMinutes();
-
-    // code to fix minute print error
-    if (currentMinute <= 9) {
-      currentMinute = listOfMinutes[currentMinute];
-    }
-
-    // here is the current time
-    let currentTime = `${currentHour}:${currentMinute}`;
-
-    // FULL TIME AND DATE HERE
-    let dateAndTime = `${currentDay} ${currentTime}`;
-    return dateAndTime;
-  }
-  let fetchedDate = getDateAndTime();
-
-  // ________________________________________________________________
-  // code to edit HTML
-  let currentDate = document.querySelector("#current-date");
-  currentDate.innerHTML = `${fetchedDate}`;
-}
-addTimeOnPage();*/
-
 // ______________________________________________________________________________________________________________
 
 /*SEARCH FORM CODE*/
@@ -232,6 +147,59 @@ function handleSearch(event) {
         secondResponse.data.list[0].weather[0].description;
       let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
+      let tempTeddy = document.querySelectorAll("#temp-teddy");
+
+      // test
+      // console.log(weatherConditionMain);
+      // console.log(weatherConditionId);
+      // document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
+
+      // changing the main weather icon - Temperature Teddy
+      if (weatherConditionMain === "Thunderstorm") {
+        document.getElementById("temp-teddy").src = "./assets/thunderstorm.png";
+      } else if (weatherConditionMain === "Drizzle") {
+        document.getElementById("temp-teddy").src = "./assets/showerrain.png";
+      } else if (weatherConditionMain === "Rain") {
+        document.getElementById("temp-teddy").src = "./assets/rain.png";
+      } else if (weatherConditionMain === "Snow") {
+        document.getElementById("temp-teddy").src = "./assets/snow.png";
+      } else if (weatherConditionMain === "Clear") {
+        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+      } else if (
+        weatherConditionMain === "Haze" ||
+        weatherConditionMain === "Mist" ||
+        weatherConditionMain === "Smoke" ||
+        weatherConditionMain === "Dust" ||
+        weatherConditionMain === "Fog" ||
+        weatherConditionMain === "Sand" ||
+        weatherConditionMain === "Ash" ||
+        weatherConditionMain === "Squall" ||
+        weatherConditionMain === "Tornado"
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/fog.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 801
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 802
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 803
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
+      } else if (
+        weatherConditionMain === "Clouds" &&
+        weatherConditionId === 804
+      ) {
+        document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+      } else {
+        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+      }
 
       // day +1 data
       let dayOneTemperature = `${Math.round(

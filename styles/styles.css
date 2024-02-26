@@ -129,6 +129,7 @@ hr {
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
+  opacity: 0.9;
 }
 
 .secondary-weather-day {
@@ -140,6 +141,7 @@ hr {
 
 .max-temp {
   font-weight: bold;
+  margin-right: 10px;
 }
 
 .humidity-wind {
@@ -217,6 +219,10 @@ footer {
 .footer-text {
   display: flex;
   justify-content: space-between;
+}
+
+.text {
+  margin: 5px;
 }
 
 .hyperlink {

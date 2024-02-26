@@ -169,6 +169,7 @@ function handleSearch(event) {
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
+
       // Function to change Temperature Teddy
       function changeTempTeddy() {
         // changing the main weather icon - Temperature Teddy
@@ -238,12 +239,14 @@ function handleSearch(event) {
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
       // day +1 data
+
       let dayOneTemperatureMax = `${Math.round(
         secondResponse.data.list[8].main.temp_max
       )}&deg;C`;
       let dayOneTemperatureMin = `${Math.round(
         secondResponse.data.list[8].main.temp_min
       )}&deg;C`;
+
       let dayOneWeatherConditionMain =
         secondResponse.data.list[8].weather[0].main;
 

@@ -138,6 +138,10 @@ hr {
   font-weight: bold;
 }
 
+.max-temp {
+  font-weight: bold;
+}
+
 .humidity-wind {
   display: flex;
   justify-content: space-evenly;

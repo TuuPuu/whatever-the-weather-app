@@ -166,7 +166,9 @@ function handleSearch(event) {
       }
 
       // current day data
-      // let data = secondResponse.data;
+      let data = secondResponse.data;
+      console.log(data);
+
       let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
       let fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
@@ -506,8 +508,6 @@ function loadup() {
     dayTwo.innerHTML = shortDays[mainDayArrayNumber + 2];
     dayThree.innerHTML = shortDays[mainDayArrayNumber + 3];
     dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
-
-    console.log(mainDayArrayNumber);
 
     // Time format fix
     if (minutes < 10) {

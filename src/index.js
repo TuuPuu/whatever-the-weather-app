@@ -185,51 +185,57 @@ function handleSearch(event) {
       let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
-      // changing the main weather icon - Temperature Teddy
-      if (weatherConditionMain === "Thunderstorm") {
-        document.getElementById("temp-teddy").src = "./assets/thunderstorm.png";
-      } else if (weatherConditionMain === "Drizzle") {
-        document.getElementById("temp-teddy").src = "./assets/showerrain.png";
-      } else if (weatherConditionMain === "Rain") {
-        document.getElementById("temp-teddy").src = "./assets/rain.png";
-      } else if (weatherConditionMain === "Snow") {
-        document.getElementById("temp-teddy").src = "./assets/snow.png";
-      } else if (weatherConditionMain === "Clear") {
-        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
-      } else if (
-        weatherConditionMain === "Haze" ||
-        weatherConditionMain === "Mist" ||
-        weatherConditionMain === "Smoke" ||
-        weatherConditionMain === "Dust" ||
-        weatherConditionMain === "Fog" ||
-        weatherConditionMain === "Sand" ||
-        weatherConditionMain === "Ash" ||
-        weatherConditionMain === "Squall" ||
-        weatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/fog.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 801
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 802
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 803
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 804
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/cloudy.png";
-      } else {
-        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+      // Function to actually get
+      function changeTempTeddy() {
+        // changing the main weather icon - Temperature Teddy
+        if (weatherConditionMain === "Thunderstorm") {
+          document.getElementById("temp-teddy").src =
+            "./assets/thunderstorm.png";
+        } else if (weatherConditionMain === "Drizzle") {
+          document.getElementById("temp-teddy").src = "./assets/showerrain.png";
+        } else if (weatherConditionMain === "Rain") {
+          document.getElementById("temp-teddy").src = "./assets/rain.png";
+        } else if (weatherConditionMain === "Snow") {
+          document.getElementById("temp-teddy").src = "./assets/snow.png";
+        } else if (weatherConditionMain === "Clear") {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        } else if (
+          weatherConditionMain === "Haze" ||
+          weatherConditionMain === "Mist" ||
+          weatherConditionMain === "Smoke" ||
+          weatherConditionMain === "Dust" ||
+          weatherConditionMain === "Fog" ||
+          weatherConditionMain === "Sand" ||
+          weatherConditionMain === "Ash" ||
+          weatherConditionMain === "Squall" ||
+          weatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fog.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 801
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 802
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 803
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 804
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+        } else {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        }
       }
 
       // day +1 data
@@ -399,6 +405,7 @@ function handleSearch(event) {
       let temperatureFourMin = document.querySelector("#temperature-four-min");
 
       changeTemperatureInfo();
+      changeTempTeddy();
     }
 
     let fetchedLonCode = response.data[0].lon;

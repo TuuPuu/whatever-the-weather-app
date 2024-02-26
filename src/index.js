@@ -156,16 +156,6 @@ function handleSearch(event) {
         humidityElement.innerHTML = humidity;
         windElement.innerHTML = wind;
 
-        temperatureOneMax.innerHTML = dayOneTemperatureMax;
-        temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
-        temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
-        temperatureFourMax.innerHTML = dayFourTemperatureMax;
-
-        temperatureOneMin.innerHTML = dayOneTemperatureMin;
-        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
-        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
-        temperatureFourMin.innerHTML = dayFourTemperatureMin;
-
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
@@ -226,8 +216,48 @@ function handleSearch(event) {
       // Function to change forecast
       function changeForecast(sheCodesResponse) {
         let data = sheCodesResponse.data;
-        console.log(data);
-        console.log("helo");
+
+        // day +1 data
+        let dayOneTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.maximum
+        )}&deg;C`;
+        let dayOneTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.minimum
+        )}&deg;C`;
+
+        // day +2 data
+        let dayTwoTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.maximum
+        )}&deg;C`;
+        let dayTwoTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.minimum
+        )}&deg;C`;
+
+        // day +3 data
+        let dayThreeTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.maximum
+        )}&deg;C`;
+        let dayThreeTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.minimum
+        )}&deg;C`;
+
+        // day +4 data
+        let dayFourTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.maximum
+        )}&deg;C`;
+        let dayFourTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.minimum
+        )}&deg;C`;
+
+        temperatureOneMax.innerHTML = dayOneTemperatureMax;
+        temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
+        temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
+        temperatureFourMax.innerHTML = dayFourTemperatureMax;
+
+        temperatureOneMin.innerHTML = dayOneTemperatureMin;
+        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
+        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
+        temperatureFourMin.innerHTML = dayFourTemperatureMin;
       }
 
       function changeForecastIcon() {
@@ -364,6 +394,7 @@ function handleSearch(event) {
       let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
+      /*
       // day +1 data
       let dayOneTemperatureMax = `${Math.round(
         secondResponse.data.list[8].main.temp_max
@@ -371,6 +402,7 @@ function handleSearch(event) {
       let dayOneTemperatureMin = `${Math.round(
         secondResponse.data.list[8].main.temp_min
       )}&deg;C`;
+
       // day +2 data
       let dayTwoTemperatureMax = `${Math.round(
         secondResponse.data.list[16].main.temp_max
@@ -394,6 +426,7 @@ function handleSearch(event) {
       let dayFourTemperatureMin = `${Math.round(
         secondResponse.data.list[32].main.temp_min
       )}&deg;C`;
+      */
 
       // DOM variables
       let temperatureElement = document.querySelector("#temperature");
@@ -592,148 +625,223 @@ function loadup() {
       let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
       let weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
-      // day +1 data
-      let dayOneTemperatureMax = `${Math.round(
-        secondResponse.data.list[8].main.temp_max
-      )}&deg;C`;
-      let dayOneTemperatureMin = `${Math.round(
-        secondResponse.data.list[8].main.temp_min
-      )}&deg;C`;
-      let dayOneWeatherConditionMain =
-        secondResponse.data.list[8].weather[0].main;
-
-      if (
-        dayOneWeatherConditionMain === "Thunderstorm" ||
-        dayOneWeatherConditionMain === "Drizzle" ||
-        dayOneWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-one-icon").innerHTML = "rainy";
-      } else if (dayOneWeatherConditionMain === "Snow") {
-        document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
-      } else if (dayOneWeatherConditionMain === "Clear") {
-        document.getElementById("day-one-icon").innerHTML = "sunny";
-      } else if (
-        dayOneWeatherConditionMain === "Haze" ||
-        dayOneWeatherConditionMain === "Mist" ||
-        dayOneWeatherConditionMain === "Smoke" ||
-        dayOneWeatherConditionMain === "Dust" ||
-        dayOneWeatherConditionMain === "Fog" ||
-        dayOneWeatherConditionMain === "Sand" ||
-        dayOneWeatherConditionMain === "Ash" ||
-        dayOneWeatherConditionMain === "Squall" ||
-        dayOneWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-one-icon").innerHTML = "foggy";
-      } else if (dayOneWeatherConditionMain === "Clouds") {
-        document.getElementById("day-one-icon").innerHTML = "cloud";
+      // Function to change Temperature Teddy
+      function changeTempTeddy() {
+        // changing the main weather icon - Temperature Teddy
+        if (weatherConditionMain === "Thunderstorm") {
+          document.getElementById("temp-teddy").src =
+            "./assets/thunderstorm.png";
+        } else if (weatherConditionMain === "Drizzle") {
+          document.getElementById("temp-teddy").src = "./assets/showerrain.png";
+        } else if (weatherConditionMain === "Rain") {
+          document.getElementById("temp-teddy").src = "./assets/rain.png";
+        } else if (weatherConditionMain === "Snow") {
+          document.getElementById("temp-teddy").src = "./assets/snow.png";
+        } else if (weatherConditionMain === "Clear") {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        } else if (
+          weatherConditionMain === "Haze" ||
+          weatherConditionMain === "Mist" ||
+          weatherConditionMain === "Smoke" ||
+          weatherConditionMain === "Dust" ||
+          weatherConditionMain === "Fog" ||
+          weatherConditionMain === "Sand" ||
+          weatherConditionMain === "Ash" ||
+          weatherConditionMain === "Squall" ||
+          weatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fog.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 801
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 802
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 803
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 804
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+        } else {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        }
       }
 
-      // day +2 data
-      let dayTwoTemperatureMax = `${Math.round(
-        secondResponse.data.list[16].main.temp_max
-      )}&deg;C`;
-      let dayTwoTemperatureMin = `${Math.round(
-        secondResponse.data.list[16].main.temp_min
-      )}&deg;C`;
-      let dayTwoWeatherConditionMain =
-        secondResponse.data.list[16].weather[0].main;
+      // Function to change forecast
+      function changeForecast(sheCodesResponse) {
+        let data = sheCodesResponse.data;
 
-      if (
-        dayTwoWeatherConditionMain === "Thunderstorm" ||
-        dayTwoWeatherConditionMain === "Drizzle" ||
-        dayTwoWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-two-icon").innerHTML = "rainy";
-      } else if (dayTwoWeatherConditionMain === "Snow") {
-        document.getElementById("day-two-icon").innerHTML = "cloudy_snowing";
-      } else if (dayTwoWeatherConditionMain === "Clear") {
-        document.getElementById("day-two-icon").innerHTML = "sunny";
-      } else if (
-        dayTwoWeatherConditionMain === "Haze" ||
-        dayTwoWeatherConditionMain === "Mist" ||
-        dayTwoWeatherConditionMain === "Smoke" ||
-        dayTwoWeatherConditionMain === "Dust" ||
-        dayTwoWeatherConditionMain === "Fog" ||
-        dayTwoWeatherConditionMain === "Sand" ||
-        dayTwoWeatherConditionMain === "Ash" ||
-        dayTwoWeatherConditionMain === "Squall" ||
-        dayTwoWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-two-icon").innerHTML = "foggy";
-      } else if (dayTwoWeatherConditionMain === "Clouds") {
-        document.getElementById("day-two-icon").innerHTML = "cloud";
+        // day +1 data
+        let dayOneTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.maximum
+        )}&deg;C`;
+        let dayOneTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.minimum
+        )}&deg;C`;
+
+        // day +2 data
+        let dayTwoTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.maximum
+        )}&deg;C`;
+        let dayTwoTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.minimum
+        )}&deg;C`;
+
+        // day +3 data
+        let dayThreeTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.maximum
+        )}&deg;C`;
+        let dayThreeTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.minimum
+        )}&deg;C`;
+
+        // day +4 data
+        let dayFourTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.maximum
+        )}&deg;C`;
+        let dayFourTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.minimum
+        )}&deg;C`;
+
+        temperatureOneMax.innerHTML = dayOneTemperatureMax;
+        temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
+        temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
+        temperatureFourMax.innerHTML = dayFourTemperatureMax;
+
+        temperatureOneMin.innerHTML = dayOneTemperatureMin;
+        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
+        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
+        temperatureFourMin.innerHTML = dayFourTemperatureMin;
       }
 
-      // day +3 data
-      let dayThreeTemperatureMax = `${Math.round(
-        secondResponse.data.list[24].main.temp_max
-      )}&deg;C`;
-      let dayThreeTemperatureMin = `${Math.round(
-        secondResponse.data.list[24].main.temp_min
-      )}&deg;C`;
-      let dayThreeWeatherConditionMain =
-        secondResponse.data.list[24].weather[0].main;
+      function changeForecastIcon() {
+        let dayOneWeatherConditionMain =
+          secondResponse.data.list[8].weather[0].main;
 
-      if (
-        dayThreeWeatherConditionMain === "Thunderstorm" ||
-        dayThreeWeatherConditionMain === "Drizzle" ||
-        dayThreeWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-three-icon").innerHTML = "rainy";
-      } else if (dayThreeWeatherConditionMain === "Snow") {
-        document.getElementById("day-three-icon").innerHTML = "cloudy_snowing";
-      } else if (dayThreeWeatherConditionMain === "Clear") {
-        document.getElementById("day-three-icon").innerHTML = "sunny";
-      } else if (
-        dayThreeWeatherConditionMain === "Haze" ||
-        dayThreeWeatherConditionMain === "Mist" ||
-        dayThreeWeatherConditionMain === "Smoke" ||
-        dayThreeWeatherConditionMain === "Dust" ||
-        dayThreeWeatherConditionMain === "Fog" ||
-        dayThreeWeatherConditionMain === "Sand" ||
-        dayThreeWeatherConditionMain === "Ash" ||
-        dayThreeWeatherConditionMain === "Squall" ||
-        dayThreeWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-three-icon").innerHTML = "foggy";
-      } else if (dayThreeWeatherConditionMain === "Clouds") {
-        document.getElementById("day-three-icon").innerHTML = "cloud";
-      }
+        if (
+          dayOneWeatherConditionMain === "Thunderstorm" ||
+          dayOneWeatherConditionMain === "Drizzle" ||
+          dayOneWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-one-icon").innerHTML = "rainy";
+        } else if (dayOneWeatherConditionMain === "Snow") {
+          document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
+        } else if (dayOneWeatherConditionMain === "Clear") {
+          document.getElementById("day-one-icon").innerHTML = "sunny";
+        } else if (
+          dayOneWeatherConditionMain === "Haze" ||
+          dayOneWeatherConditionMain === "Mist" ||
+          dayOneWeatherConditionMain === "Smoke" ||
+          dayOneWeatherConditionMain === "Dust" ||
+          dayOneWeatherConditionMain === "Fog" ||
+          dayOneWeatherConditionMain === "Sand" ||
+          dayOneWeatherConditionMain === "Ash" ||
+          dayOneWeatherConditionMain === "Squall" ||
+          dayOneWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-one-icon").innerHTML = "foggy";
+        } else if (dayOneWeatherConditionMain === "Clouds") {
+          document.getElementById("day-one-icon").innerHTML = "cloud";
+        }
 
-      // day +4 data
-      let dayFourTemperatureMax = `${Math.round(
-        secondResponse.data.list[32].main.temp_max
-      )}&deg;C`;
-      let dayFourTemperatureMin = `${Math.round(
-        secondResponse.data.list[32].main.temp_min
-      )}&deg;C`;
-      let dayFourWeatherConditionMain =
-        secondResponse.data.list[32].weather[0].main;
+        let dayTwoWeatherConditionMain =
+          secondResponse.data.list[16].weather[0].main;
 
-      if (
-        dayFourWeatherConditionMain === "Thunderstorm" ||
-        dayFourWeatherConditionMain === "Drizzle" ||
-        dayFourWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-four-icon").innerHTML = "rainy";
-      } else if (dayFourWeatherConditionMain === "Snow") {
-        document.getElementById("day-four-icon").innerHTML = "cloudy_snowing";
-      } else if (dayFourWeatherConditionMain === "Clear") {
-        document.getElementById("day-four-icon").innerHTML = "sunny";
-      } else if (
-        dayFourWeatherConditionMain === "Haze" ||
-        dayFourWeatherConditionMain === "Mist" ||
-        dayFourWeatherConditionMain === "Smoke" ||
-        dayFourWeatherConditionMain === "Dust" ||
-        dayFourWeatherConditionMain === "Fog" ||
-        dayFourWeatherConditionMain === "Sand" ||
-        dayFourWeatherConditionMain === "Ash" ||
-        dayFourWeatherConditionMain === "Squall" ||
-        dayFourWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-four-icon").innerHTML = "foggy";
-      } else if (dayFourWeatherConditionMain === "Clouds") {
-        document.getElementById("day-four-icon").innerHTML = "cloud";
+        if (
+          dayTwoWeatherConditionMain === "Thunderstorm" ||
+          dayTwoWeatherConditionMain === "Drizzle" ||
+          dayTwoWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-two-icon").innerHTML = "rainy";
+        } else if (dayTwoWeatherConditionMain === "Snow") {
+          document.getElementById("day-two-icon").innerHTML = "cloudy_snowing";
+        } else if (dayTwoWeatherConditionMain === "Clear") {
+          document.getElementById("day-two-icon").innerHTML = "sunny";
+        } else if (
+          dayTwoWeatherConditionMain === "Haze" ||
+          dayTwoWeatherConditionMain === "Mist" ||
+          dayTwoWeatherConditionMain === "Smoke" ||
+          dayTwoWeatherConditionMain === "Dust" ||
+          dayTwoWeatherConditionMain === "Fog" ||
+          dayTwoWeatherConditionMain === "Sand" ||
+          dayTwoWeatherConditionMain === "Ash" ||
+          dayTwoWeatherConditionMain === "Squall" ||
+          dayTwoWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-two-icon").innerHTML = "foggy";
+        } else if (dayTwoWeatherConditionMain === "Clouds") {
+          document.getElementById("day-two-icon").innerHTML = "cloud";
+        }
+
+        let dayThreeWeatherConditionMain =
+          secondResponse.data.list[24].weather[0].main;
+
+        if (
+          dayThreeWeatherConditionMain === "Thunderstorm" ||
+          dayThreeWeatherConditionMain === "Drizzle" ||
+          dayThreeWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-three-icon").innerHTML = "rainy";
+        } else if (dayThreeWeatherConditionMain === "Snow") {
+          document.getElementById("day-three-icon").innerHTML =
+            "cloudy_snowing";
+        } else if (dayThreeWeatherConditionMain === "Clear") {
+          document.getElementById("day-three-icon").innerHTML = "sunny";
+        } else if (
+          dayThreeWeatherConditionMain === "Haze" ||
+          dayThreeWeatherConditionMain === "Mist" ||
+          dayThreeWeatherConditionMain === "Smoke" ||
+          dayThreeWeatherConditionMain === "Dust" ||
+          dayThreeWeatherConditionMain === "Fog" ||
+          dayThreeWeatherConditionMain === "Sand" ||
+          dayThreeWeatherConditionMain === "Ash" ||
+          dayThreeWeatherConditionMain === "Squall" ||
+          dayThreeWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-three-icon").innerHTML = "foggy";
+        } else if (dayThreeWeatherConditionMain === "Clouds") {
+          document.getElementById("day-three-icon").innerHTML = "cloud";
+        }
+
+        let dayFourWeatherConditionMain =
+          secondResponse.data.list[32].weather[0].main;
+
+        if (
+          dayFourWeatherConditionMain === "Thunderstorm" ||
+          dayFourWeatherConditionMain === "Drizzle" ||
+          dayFourWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-four-icon").innerHTML = "rainy";
+        } else if (dayFourWeatherConditionMain === "Snow") {
+          document.getElementById("day-four-icon").innerHTML = "cloudy_snowing";
+        } else if (dayFourWeatherConditionMain === "Clear") {
+          document.getElementById("day-four-icon").innerHTML = "sunny";
+        } else if (
+          dayFourWeatherConditionMain === "Haze" ||
+          dayFourWeatherConditionMain === "Mist" ||
+          dayFourWeatherConditionMain === "Smoke" ||
+          dayFourWeatherConditionMain === "Dust" ||
+          dayFourWeatherConditionMain === "Fog" ||
+          dayFourWeatherConditionMain === "Sand" ||
+          dayFourWeatherConditionMain === "Ash" ||
+          dayFourWeatherConditionMain === "Squall" ||
+          dayFourWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-four-icon").innerHTML = "foggy";
+        } else if (dayFourWeatherConditionMain === "Clouds") {
+          document.getElementById("day-four-icon").innerHTML = "cloud";
+        }
       }
 
       // DOM variables
@@ -768,20 +876,18 @@ function loadup() {
         humidityElement.innerHTML = humidity;
         windElement.innerHTML = wind;
 
-        temperatureOneMax.innerHTML = dayOneTemperatureMax;
-        temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
-        temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
-        temperatureFourMax.innerHTML = dayFourTemperatureMax;
-
-        temperatureOneMin.innerHTML = dayOneTemperatureMin;
-        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
-        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
-        temperatureFourMin.innerHTML = dayFourTemperatureMin;
-
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
+
+      let sheCodesApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+      let sheCodesApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${sheCodesApiKey}`;
+
       changeTemperatureInfo();
+      changeTempTeddy();
+      changeForecastIcon();
+
+      axios.get(sheCodesApiUrl).then(changeForecast);
     }
 
     let fetchedLonCode = response.data[0].lon;

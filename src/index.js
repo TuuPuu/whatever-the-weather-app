@@ -1,7 +1,7 @@
 /* INFO MODAL CODE */
 function openInfoBox() {
   // Get the modal
-  let modal = document.getElementById("infoModal");
+  const modal = document.getElementById("infoModal");
 
   // Get the button that opens the modal
   var button = document.getElementById("openModalButton");
@@ -40,16 +40,16 @@ function handleSearch(event) {
   function accessTime() {
     // FUNCTION TO GET SEARCHED TIME AND MANIPULATE DOM
     function getSearchedTime(thirdResponse) {
-      let date = new Date(thirdResponse.data.time * 1000);
-      let dateElement = document.querySelector("#current-date");
-      let dayOne = document.querySelector("#day-one");
-      let dayTwo = document.querySelector("#day-two");
-      let dayThree = document.querySelector("#day-three");
-      let dayFour = document.querySelector("#day-four");
+      const date = new Date(thirdResponse.data.time * 1000);
+      const dateElement = document.querySelector("#current-date");
+      const dayOne = document.querySelector("#day-one");
+      const dayTwo = document.querySelector("#day-two");
+      const dayThree = document.querySelector("#day-three");
+      const dayFour = document.querySelector("#day-four");
 
-      let minutes = date.getMinutes();
-      let hours = date.getHours();
-      let days = [
+      const minutes = date.getMinutes();
+      const hours = date.getHours();
+      const days = [
         "Sunday",
         "Monday",
         "Tuesday",
@@ -60,7 +60,7 @@ function handleSearch(event) {
       ];
 
       // GETTING THE TIME
-      let listOfHours = [
+      const listOfHours = [
         "00",
         "01",
         "02",
@@ -87,7 +87,7 @@ function handleSearch(event) {
         "23",
       ];
 
-      let listOfMinutes = [
+      const listOfMinutes = [
         "00",
         "01",
         "02",
@@ -100,8 +100,8 @@ function handleSearch(event) {
         "09",
       ];
 
-      let currentHour = listOfHours[hours];
-      let currentMinute = minutes;
+      const currentHour = listOfHours[hours];
+      const currentMinute = minutes;
 
       // code to fix minute print error
       if (currentMinute <= 9) {
@@ -109,12 +109,12 @@ function handleSearch(event) {
       }
 
       // here is the current time
-      let currentTime = `${currentHour}:${currentMinute}`;
+      const currentTime = `${currentHour}:${currentMinute}`;
 
-      let day = days[date.getDay()];
-      let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-      let mainDayArrayNumber = days.indexOf(day);
-      let searchedDate = `${day} ${currentTime}`;
+      const day = days[date.getDay()];
+      const shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+      const mainDayArrayNumber = days.indexOf(day);
+      const searchedDate = `${day} ${currentTime}`;
 
       // DOM manipulation
       dateElement.innerHTML = searchedDate;
@@ -124,8 +124,8 @@ function handleSearch(event) {
       dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
     }
 
-    let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-    let timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
+    const timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+    const timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
     `;
 
     // THIRD API CALL FOR TIME
@@ -134,7 +134,7 @@ function handleSearch(event) {
 
   // FUNCTION TO CAPITALISE ACCESED USER INPUT
   function capitaliseLetter() {
-    let submittedUserInput = userInput.value;
+    const submittedUserInput = userInput.value;
     const trimmedInput = submittedUserInput.trim();
     const firstLetter = trimmedInput.charAt(0);
     const firstLetterCap = firstLetter.toUpperCase();
@@ -147,7 +147,12 @@ function handleSearch(event) {
 
   // FUNCTION TO GET LON AND LAT GEO CODES IN ORDER TO USE IN SECOND API CALL FOR TEMP
   function accessWeather(response) {
+    //______________________________________________________________________________________________________________
+
     // SECOND API CALL- to get temp
+
+    //______________________________________________________________________________________________________________
+
     function getTemperatureData(secondResponse) {
       // DOM manipulation function
       function changeTemperatureInfo() {
@@ -159,6 +164,7 @@ function handleSearch(event) {
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
+      //______________________________________________________________________________________________________________
 
       // Function to change Temperature Teddy
       function changeTempTeddy() {
@@ -212,40 +218,39 @@ function handleSearch(event) {
           document.getElementById("temp-teddy").src = "./assets/clearsky.png";
         }
       }
+      //______________________________________________________________________________________________________________
 
       // Function to change forecast
       function changeForecast(sheCodesResponse) {
-        let data = sheCodesResponse.data;
-
         // day +1 data
-        let dayOneTemperatureMax = `${Math.round(
+        const dayOneTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[0].temperature.maximum
         )}&deg;C`;
-        let dayOneTemperatureMin = `${Math.round(
+        const dayOneTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[0].temperature.minimum
         )}&deg;C`;
 
         // day +2 data
-        let dayTwoTemperatureMax = `${Math.round(
+        const dayTwoTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[1].temperature.maximum
         )}&deg;C`;
-        let dayTwoTemperatureMin = `${Math.round(
+        const dayTwoTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[1].temperature.minimum
         )}&deg;C`;
 
         // day +3 data
-        let dayThreeTemperatureMax = `${Math.round(
+        const dayThreeTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[2].temperature.maximum
         )}&deg;C`;
-        let dayThreeTemperatureMin = `${Math.round(
+        const dayThreeTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[2].temperature.minimum
         )}&deg;C`;
 
         // day +4 data
-        let dayFourTemperatureMax = `${Math.round(
+        const dayFourTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[3].temperature.maximum
         )}&deg;C`;
-        let dayFourTemperatureMin = `${Math.round(
+        const dayFourTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[3].temperature.minimum
         )}&deg;C`;
 
@@ -259,9 +264,10 @@ function handleSearch(event) {
         temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
         temperatureFourMin.innerHTML = dayFourTemperatureMin;
       }
+      //______________________________________________________________________________________________________________
 
       function changeForecastIcon() {
-        let dayOneWeatherConditionMain =
+        const dayOneWeatherConditionMain =
           secondResponse.data.list[8].weather[0].main;
 
         if (
@@ -290,7 +296,7 @@ function handleSearch(event) {
           document.getElementById("day-one-icon").innerHTML = "cloud";
         }
 
-        let dayTwoWeatherConditionMain =
+        const dayTwoWeatherConditionMain =
           secondResponse.data.list[16].weather[0].main;
 
         if (
@@ -319,7 +325,7 @@ function handleSearch(event) {
           document.getElementById("day-two-icon").innerHTML = "cloud";
         }
 
-        let dayThreeWeatherConditionMain =
+        const dayThreeWeatherConditionMain =
           secondResponse.data.list[24].weather[0].main;
 
         if (
@@ -349,7 +355,7 @@ function handleSearch(event) {
           document.getElementById("day-three-icon").innerHTML = "cloud";
         }
 
-        let dayFourWeatherConditionMain =
+        const dayFourWeatherConditionMain =
           secondResponse.data.list[32].weather[0].main;
 
         if (
@@ -378,80 +384,52 @@ function handleSearch(event) {
           document.getElementById("day-four-icon").innerHTML = "cloud";
         }
       }
+      //______________________________________________________________________________________________________________
 
       // FETCHED DATA
-      let data = secondResponse.data;
-      console.log(data);
-
-      let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
-      let fetchedWind =
+      const mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
+      const fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
-      let fetchedHumidity = secondResponse.data.list[0].main.humidity;
-      let wind = `${fetchedWind}m/s`;
-      let humidity = `${fetchedHumidity}%`;
-      let weatherDescription =
+      const fetchedHumidity = secondResponse.data.list[0].main.humidity;
+      const wind = `${fetchedWind}m/s`;
+      const humidity = `${fetchedHumidity}%`;
+      const weatherDescription =
         secondResponse.data.list[0].weather[0].description;
-      let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
-      let weatherConditionId = secondResponse.data.list[0].weather[0].id;
+      const weatherConditionMain = secondResponse.data.list[0].weather[0].main;
+      const weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
-      /*
-      // day +1 data
-      let dayOneTemperatureMax = `${Math.round(
-        secondResponse.data.list[8].main.temp_max
-      )}&deg;C`;
-      let dayOneTemperatureMin = `${Math.round(
-        secondResponse.data.list[8].main.temp_min
-      )}&deg;C`;
-
-      // day +2 data
-      let dayTwoTemperatureMax = `${Math.round(
-        secondResponse.data.list[16].main.temp_max
-      )}&deg;C`;
-      let dayTwoTemperatureMin = `${Math.round(
-        secondResponse.data.list[16].main.temp_min
-      )}&deg;C`;
-
-      // day +3 data
-      let dayThreeTemperatureMax = `${Math.round(
-        secondResponse.data.list[24].main.temp_max
-      )}&deg;C`;
-      let dayThreeTemperatureMin = `${Math.round(
-        secondResponse.data.list[24].main.temp_min
-      )}&deg;C`;
-
-      // day +4 data
-      let dayFourTemperatureMax = `${Math.round(
-        secondResponse.data.list[32].main.temp_max
-      )}&deg;C`;
-      let dayFourTemperatureMin = `${Math.round(
-        secondResponse.data.list[32].main.temp_min
-      )}&deg;C`;
-      */
+      //______________________________________________________________________________________________________________
 
       // DOM variables
-      let temperatureElement = document.querySelector("#temperature");
-      let weatherDescriptionElement = document.querySelector(
+      const temperatureElement = document.querySelector("#temperature");
+      const weatherDescriptionElement = document.querySelector(
         "#weather-description"
       );
-      let humidityElement = document.querySelector("#humidity");
-      let windElement = document.querySelector("#wind");
+      const humidityElement = document.querySelector("#humidity");
+      const windElement = document.querySelector("#wind");
 
-      let temperatureOneMax = document.querySelector("#temperature-one-max");
-      let temperatureTwoMax = document.querySelector("#temperature-two-max");
-      let temperatureThreeMax = document.querySelector(
+      const temperatureOneMax = document.querySelector("#temperature-one-max");
+      const temperatureTwoMax = document.querySelector("#temperature-two-max");
+      const temperatureThreeMax = document.querySelector(
         "#temperature-three-max"
       );
-      let temperatureFourMax = document.querySelector("#temperature-four-max");
+      const temperatureFourMax = document.querySelector(
+        "#temperature-four-max"
+      );
 
-      let temperatureOneMin = document.querySelector("#temperature-one-min");
-      let temperatureTwoMin = document.querySelector("#temperature-two-min");
-      let temperatureThreeMin = document.querySelector(
+      const temperatureOneMin = document.querySelector("#temperature-one-min");
+      const temperatureTwoMin = document.querySelector("#temperature-two-min");
+      const temperatureThreeMin = document.querySelector(
         "#temperature-three-min"
       );
-      let temperatureFourMin = document.querySelector("#temperature-four-min");
+      const temperatureFourMin = document.querySelector(
+        "#temperature-four-min"
+      );
 
-      let sheCodesApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-      let sheCodesApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${sheCodesApiKey}`;
+      //______________________________________________________________________________________________________________
+
+      const sheCodesApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+      const sheCodesApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${sheCodesApiKey}`;
 
       changeTemperatureInfo();
       changeTempTeddy();
@@ -460,23 +438,23 @@ function handleSearch(event) {
       axios.get(sheCodesApiUrl).then(changeForecast);
     }
 
-    let fetchedLonCode = response.data[0].lon;
-    let fetchedLatCode = response.data[0].lat;
+    const fetchedLonCode = response.data[0].lon;
+    const fetchedLatCode = response.data[0].lat;
 
-    let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-    let apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
+    const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+    const apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
     // FOURTH API CALL - to get forecast
     axios.get(apiUrlMain).then(getTemperatureData);
   }
 
   // list of main global variables
-  let userInput = document.querySelector("#search-form-input");
-  let cityName = document.querySelector("#city-heading");
-  let updatedInput = capitaliseLetter();
-  let citySearch = userInput.value;
-  let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-  let apiUrlGeocode = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
+  const userInput = document.querySelector("#search-form-input");
+  const cityName = document.querySelector("#city-heading");
+  const updatedInput = capitaliseLetter();
+  const citySearch = userInput.value;
+  const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+  const apiUrlGeocode = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
   // FIRST API CALL - to get geo codes
   axios.get(apiUrlGeocode).then(accessWeather);
@@ -490,7 +468,7 @@ function handleSearch(event) {
 //______________________________________________________________________________________________________________
 
 /* DOM LISTEN OUT FOR USER SEARCH */
-let searchFormElement = document.querySelector("#search-form");
+const searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 //______________________________________________________________________________________________________________
@@ -498,29 +476,28 @@ searchFormElement.addEventListener("submit", handleSearch);
 /* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load */
 
 function loadup() {
-  // console.log("working");
-
   // list of main variables
-
-  let cityName = document.querySelector("#city-heading");
-  let citySearch = "London";
-  let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-  let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
+  const cityName = document.querySelector("#city-heading");
+  const citySearch = "London";
+  const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+  const apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
   axios.get(apiUrlGeocode).then(accessWeather);
 
+  //______________________________________________________________________________________________________________
+
   // FUNCTION TO GET SEARCHED TIME AND MANIPULATE DOM
   function getSearchedTime(thirdResponse) {
-    let date = new Date(thirdResponse.data.time * 1000);
-    let dateElement = document.querySelector("#current-date");
-    let dayOne = document.querySelector("#day-one");
-    let dayTwo = document.querySelector("#day-two");
-    let dayThree = document.querySelector("#day-three");
-    let dayFour = document.querySelector("#day-four");
+    const date = new Date(thirdResponse.data.time * 1000);
+    const dateElement = document.querySelector("#current-date");
+    const dayOne = document.querySelector("#day-one");
+    const dayTwo = document.querySelector("#day-two");
+    const dayThree = document.querySelector("#day-three");
+    const dayFour = document.querySelector("#day-four");
 
-    let minutes = date.getMinutes();
-    let hours = date.getHours();
-    let days = [
+    const minutes = date.getMinutes();
+    const hours = date.getHours();
+    const days = [
       "Sunday",
       "Monday",
       "Tuesday",
@@ -531,7 +508,7 @@ function loadup() {
     ];
 
     // GETTING THE TIME
-    let listOfHours = [
+    const listOfHours = [
       "00",
       "01",
       "02",
@@ -558,7 +535,7 @@ function loadup() {
       "23",
     ];
 
-    let listOfMinutes = [
+    const listOfMinutes = [
       "00",
       "01",
       "02",
@@ -571,8 +548,8 @@ function loadup() {
       "09",
     ];
 
-    let currentHour = listOfHours[hours];
-    let currentMinute = minutes;
+    const currentHour = listOfHours[hours];
+    const currentMinute = minutes;
 
     // code to fix minute print error
     if (currentMinute <= 9) {
@@ -580,12 +557,12 @@ function loadup() {
     }
 
     // here is the current time
-    let currentTime = `${currentHour}:${currentMinute}`;
+    const currentTime = `${currentHour}:${currentMinute}`;
 
-    let day = days[date.getDay()];
-    let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-    let mainDayArrayNumber = days.indexOf(day);
-    let searchedDate = `${day} ${currentTime}`;
+    const day = days[date.getDay()];
+    const shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+    const mainDayArrayNumber = days.indexOf(day);
+    const searchedDate = `${day} ${currentTime}`;
 
     // DOM manipulation
     dateElement.innerHTML = searchedDate;
@@ -600,30 +577,35 @@ function loadup() {
     }
   }
 
-  let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-  let timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
+  //______________________________________________________________________________________________________________
+
+  const timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+  const timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
     `;
 
   // THIRD API CALL FOR TIME
   axios.get(timeApiUrl).then(getSearchedTime);
 
+  //______________________________________________________________________________________________________________
+
   function accessWeather(response) {
     // SECOND API CALL- to get temp
     function getTemperatureData(secondResponse) {
-      // DOM manipulation function
+      //______________________________________________________________________________________________________________
 
       // current day data
-      let data = secondResponse.data;
-      let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
-      let fetchedWind =
+      const mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
+      const fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
-      let fetchedHumidity = secondResponse.data.list[0].main.humidity;
-      let wind = `${fetchedWind}m/s`;
-      let humidity = `${fetchedHumidity}%`;
-      let weatherDescription =
+      const fetchedHumidity = secondResponse.data.list[0].main.humidity;
+      const wind = `${fetchedWind}m/s`;
+      const humidity = `${fetchedHumidity}%`;
+      const weatherDescription =
         secondResponse.data.list[0].weather[0].description;
-      let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
-      let weatherConditionId = secondResponse.data.list[0].weather[0].id;
+      const weatherConditionMain = secondResponse.data.list[0].weather[0].main;
+      const weatherConditionId = secondResponse.data.list[0].weather[0].id;
+
+      //______________________________________________________________________________________________________________
 
       // Function to change Temperature Teddy
       function changeTempTeddy() {
@@ -680,39 +662,39 @@ function loadup() {
 
       // Function to change forecast
       function changeForecast(sheCodesResponse) {
-        let data = sheCodesResponse.data;
-
         // day +1 data
-        let dayOneTemperatureMax = `${Math.round(
+        const dayOneTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[0].temperature.maximum
         )}&deg;C`;
-        let dayOneTemperatureMin = `${Math.round(
+        const dayOneTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[0].temperature.minimum
         )}&deg;C`;
 
         // day +2 data
-        let dayTwoTemperatureMax = `${Math.round(
+        const dayTwoTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[1].temperature.maximum
         )}&deg;C`;
-        let dayTwoTemperatureMin = `${Math.round(
+        const dayTwoTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[1].temperature.minimum
         )}&deg;C`;
 
         // day +3 data
-        let dayThreeTemperatureMax = `${Math.round(
+        const dayThreeTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[2].temperature.maximum
         )}&deg;C`;
-        let dayThreeTemperatureMin = `${Math.round(
+        const dayThreeTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[2].temperature.minimum
         )}&deg;C`;
 
         // day +4 data
-        let dayFourTemperatureMax = `${Math.round(
+        const dayFourTemperatureMax = `${Math.round(
           sheCodesResponse.data.daily[3].temperature.maximum
         )}&deg;C`;
-        let dayFourTemperatureMin = `${Math.round(
+        const dayFourTemperatureMin = `${Math.round(
           sheCodesResponse.data.daily[3].temperature.minimum
         )}&deg;C`;
+
+        //______________________________________________________________________________________________________________
 
         temperatureOneMax.innerHTML = dayOneTemperatureMax;
         temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
@@ -725,8 +707,10 @@ function loadup() {
         temperatureFourMin.innerHTML = dayFourTemperatureMin;
       }
 
+      //______________________________________________________________________________________________________________
+
       function changeForecastIcon() {
-        let dayOneWeatherConditionMain =
+        const dayOneWeatherConditionMain =
           secondResponse.data.list[8].weather[0].main;
 
         if (
@@ -755,7 +739,9 @@ function loadup() {
           document.getElementById("day-one-icon").innerHTML = "cloud";
         }
 
-        let dayTwoWeatherConditionMain =
+        //______________________________________________________________________________________________________________
+
+        const dayTwoWeatherConditionMain =
           secondResponse.data.list[16].weather[0].main;
 
         if (
@@ -784,7 +770,9 @@ function loadup() {
           document.getElementById("day-two-icon").innerHTML = "cloud";
         }
 
-        let dayThreeWeatherConditionMain =
+        //______________________________________________________________________________________________________________
+
+        const dayThreeWeatherConditionMain =
           secondResponse.data.list[24].weather[0].main;
 
         if (
@@ -814,7 +802,9 @@ function loadup() {
           document.getElementById("day-three-icon").innerHTML = "cloud";
         }
 
-        let dayFourWeatherConditionMain =
+        //______________________________________________________________________________________________________________
+
+        const dayFourWeatherConditionMain =
           secondResponse.data.list[32].weather[0].main;
 
         if (
@@ -844,31 +834,36 @@ function loadup() {
         }
       }
 
+      //______________________________________________________________________________________________________________
+
       // DOM variables
-      let temperatureElement = document.querySelector("#temperature");
-      let weatherDescriptionElement = document.querySelector(
+      const temperatureElement = document.querySelector("#temperature");
+      const weatherDescriptionElement = document.querySelector(
         "#weather-description"
       );
 
-      let humidityElement = document.querySelector("#humidity");
-      let windElement = document.querySelector("#wind");
-      let dayOne = document.querySelector("#day-one");
-      let dayTwo = document.querySelector("#day-two");
-      let dayThree = document.querySelector("#day-three");
-      let dayFour = document.querySelector("#day-four");
-      let temperatureOneMax = document.querySelector("#temperature-one-max");
-      let temperatureTwoMax = document.querySelector("#temperature-two-max");
-      let temperatureThreeMax = document.querySelector(
+      const humidityElement = document.querySelector("#humidity");
+      const windElement = document.querySelector("#wind");
+
+      const temperatureOneMax = document.querySelector("#temperature-one-max");
+      const temperatureTwoMax = document.querySelector("#temperature-two-max");
+      const temperatureThreeMax = document.querySelector(
         "#temperature-three-max"
       );
-      let temperatureFourMax = document.querySelector("#temperature-four-max");
+      const temperatureFourMax = document.querySelector(
+        "#temperature-four-max"
+      );
 
-      let temperatureOneMin = document.querySelector("#temperature-one-min");
-      let temperatureTwoMin = document.querySelector("#temperature-two-min");
-      let temperatureThreeMin = document.querySelector(
+      const temperatureOneMin = document.querySelector("#temperature-one-min");
+      const temperatureTwoMin = document.querySelector("#temperature-two-min");
+      const temperatureThreeMin = document.querySelector(
         "#temperature-three-min"
       );
-      let temperatureFourMin = document.querySelector("#temperature-four-min");
+      const temperatureFourMin = document.querySelector(
+        "#temperature-four-min"
+      );
+
+      //______________________________________________________________________________________________________________
 
       function changeTemperatureInfo() {
         cityName.innerHTML = "London";
@@ -880,8 +875,12 @@ function loadup() {
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
 
-      let sheCodesApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-      let sheCodesApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${sheCodesApiKey}`;
+      //______________________________________________________________________________________________________________
+
+      const sheCodesApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+      const sheCodesApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${sheCodesApiKey}`;
+
+      //______________________________________________________________________________________________________________
 
       changeTemperatureInfo();
       changeTempTeddy();
@@ -890,11 +889,11 @@ function loadup() {
       axios.get(sheCodesApiUrl).then(changeForecast);
     }
 
-    let fetchedLonCode = response.data[0].lon;
-    let fetchedLatCode = response.data[0].lat;
+    const fetchedLonCode = response.data[0].lon;
+    const fetchedLatCode = response.data[0].lat;
 
-    let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-    let apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
+    const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+    const apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
     axios.get(apiUrlMain).then(getTemperatureData);
   }

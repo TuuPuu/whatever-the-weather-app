@@ -161,6 +161,11 @@ function handleSearch(event) {
         temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
         temperatureFourMax.innerHTML = dayFourTemperatureMax;
 
+        temperatureOneMin.innerHTML = dayOneTemperatureMin;
+        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
+        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
+        temperatureFourMin.innerHTML = dayFourTemperatureMin;
+
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
@@ -231,6 +236,9 @@ function handleSearch(event) {
       let dayOneTemperatureMax = `${Math.round(
         secondResponse.data.list[8].main.temp_max
       )}&deg;C`;
+      let dayOneTemperatureMin = `${Math.round(
+        secondResponse.data.list[8].main.temp_min
+      )}&deg;C`;
       let dayOneWeatherConditionMain =
         secondResponse.data.list[8].weather[0].main;
 
@@ -263,6 +271,9 @@ function handleSearch(event) {
       // day +2 data
       let dayTwoTemperatureMax = `${Math.round(
         secondResponse.data.list[16].main.temp_max
+      )}&deg;C`;
+      let dayTwoTemperatureMin = `${Math.round(
+        secondResponse.data.list[16].main.temp_min
       )}&deg;C`;
       let dayTwoWeatherConditionMain =
         secondResponse.data.list[16].weather[0].main;
@@ -297,6 +308,9 @@ function handleSearch(event) {
       let dayThreeTemperatureMax = `${Math.round(
         secondResponse.data.list[24].main.temp_max
       )}&deg;C`;
+      let dayThreeTemperatureMin = `${Math.round(
+        secondResponse.data.list[24].main.temp_min
+      )}&deg;C`;
       let dayThreeWeatherConditionMain =
         secondResponse.data.list[24].weather[0].main;
 
@@ -329,6 +343,9 @@ function handleSearch(event) {
       // day +4 data
       let dayFourTemperatureMax = `${Math.round(
         secondResponse.data.list[32].main.temp_max
+      )}&deg;C`;
+      let dayFourTemperatureMin = `${Math.round(
+        secondResponse.data.list[32].main.temp_min
       )}&deg;C`;
       let dayFourWeatherConditionMain =
         secondResponse.data.list[32].weather[0].main;
@@ -373,6 +390,13 @@ function handleSearch(event) {
         "#temperature-three-max"
       );
       let temperatureFourMax = document.querySelector("#temperature-four-max");
+
+      let temperatureOneMin = document.querySelector("#temperature-one-min");
+      let temperatureTwoMin = document.querySelector("#temperature-two-min");
+      let temperatureThreeMin = document.querySelector(
+        "#temperature-three-min"
+      );
+      let temperatureFourMin = document.querySelector("#temperature-four-min");
 
       changeTemperatureInfo();
     }
@@ -546,35 +570,41 @@ function loadup() {
       let dayOneTemperatureMax = `${Math.round(
         secondResponse.data.list[8].main.temp_max
       )}&deg;C`;
+      let dayOneTemperatureMin = `${Math.round(
+        secondResponse.data.list[8].main.temp_min
+      )}&deg;C`;
       let dayOneWeatherConditionMain =
         secondResponse.data.list[8].weather[0].main;
-      let dayOneWeatherConditionId = secondResponse.data.list[8].weather[0].id;
 
       // day +2 data
       let dayTwoTemperatureMax = `${Math.round(
         secondResponse.data.list[16].main.temp_max
       )}&deg;C`;
+      let dayTwoTemperatureMin = `${Math.round(
+        secondResponse.data.list[16].main.temp_min
+      )}&deg;C`;
       let dayTwoWeatherConditionMain =
         secondResponse.data.list[16].weather[0].main;
-      let dayTwoWeatherConditionId = secondResponse.data.list[16].weather[0].id;
 
       // day +3 data
       let dayThreeTemperatureMax = `${Math.round(
         secondResponse.data.list[24].main.temp_max
       )}&deg;C`;
+      let dayThreeTemperatureMin = `${Math.round(
+        secondResponse.data.list[24].main.temp_min
+      )}&deg;C`;
       let dayThreeWeatherConditionMain =
         secondResponse.data.list[24].weather[0].main;
-      let dayThreeWeatherConditionId =
-        secondResponse.data.list[24].weather[0].id;
 
       // day +4 data
       let dayFourTemperatureMax = `${Math.round(
         secondResponse.data.list[32].main.temp_max
       )}&deg;C`;
+      let dayFourTemperatureMin = `${Math.round(
+        secondResponse.data.list[32].main.temp_min
+      )}&deg;C`;
       let dayFourWeatherConditionMain =
         secondResponse.data.list[32].weather[0].main;
-      let dayFourWeatherConditionId =
-        secondResponse.data.list[32].weather[0].id;
 
       // DOM variables
       let temperatureElement = document.querySelector("#temperature");
@@ -595,6 +625,13 @@ function loadup() {
       );
       let temperatureFourMax = document.querySelector("#temperature-four-max");
 
+      let temperatureOneMin = document.querySelector("#temperature-one-min");
+      let temperatureTwoMin = document.querySelector("#temperature-two-min");
+      let temperatureThreeMin = document.querySelector(
+        "#temperature-three-min"
+      );
+      let temperatureFourMin = document.querySelector("#temperature-four-min");
+
       function changeTemperatureInfo() {
         cityName.innerHTML = "London";
 
@@ -605,6 +642,11 @@ function loadup() {
         temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
         temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
         temperatureFourMax.innerHTML = dayFourTemperatureMax;
+
+        temperatureOneMin.innerHTML = dayOneTemperatureMin;
+        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
+        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
+        temperatureFourMin.innerHTML = dayFourTemperatureMin;
 
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;

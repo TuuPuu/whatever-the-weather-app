@@ -42,12 +42,13 @@ function handleSearch(event) {
     function getSearchedTime(thirdResponse) {
       const date = new Date(thirdResponse.data.time * 1000);
       const dateElement = document.querySelector("#current-date");
+      const cityHeading = document.querySelector("#city-heading");
       const dayOne = document.querySelector("#day-one");
       const dayTwo = document.querySelector("#day-two");
       const dayThree = document.querySelector("#day-three");
       const dayFour = document.querySelector("#day-four");
 
-      const minutes = date.getMinutes();
+      let minutes = date.getMinutes();
       const hours = date.getHours();
       const days = [
         "Sunday",
@@ -101,7 +102,7 @@ function handleSearch(event) {
       ];
 
       const currentHour = listOfHours[hours];
-      const currentMinute = minutes;
+      let currentMinute = minutes;
 
       // code to fix minute print error
       if (currentMinute <= 9) {
@@ -122,6 +123,53 @@ function handleSearch(event) {
       dayTwo.innerHTML = shortDays[mainDayArrayNumber + 2];
       dayThree.innerHTML = shortDays[mainDayArrayNumber + 3];
       dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
+
+      // DOM variables
+      const temperatureElement = document.querySelector("#temperature");
+      const weatherDescriptionElement = document.querySelector(
+        "#weather-description"
+      );
+      const humidityElement = document.querySelector("#humidity");
+      const windElement = document.querySelector("#wind");
+
+      const temperatureOneMax = document.querySelector("#temperature-one-max");
+      const temperatureTwoMax = document.querySelector("#temperature-two-max");
+      const temperatureThreeMax = document.querySelector(
+        "#temperature-three-max"
+      );
+      const temperatureFourMax = document.querySelector(
+        "#temperature-four-max"
+      );
+
+      const temperatureOneMin = document.querySelector("#temperature-one-min");
+      const temperatureTwoMin = document.querySelector("#temperature-two-min");
+      const temperatureThreeMin = document.querySelector(
+        "#temperature-three-min"
+      );
+      const temperatureFourMin = document.querySelector(
+        "#temperature-four-min"
+      );
+
+      // DOM manipulation if country not found
+      if (dateElement.innerHTML === "undefined undefined:NaN") {
+        cityHeading.innerHTML = " Uh Oh...";
+        dateElement.innerHTML =
+          "Country not found. Please search again ʕ •ₒ• ʔ";
+        document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+
+        temperatureElement.innerHTML = "";
+        weatherDescriptionElement.innerHTML = "";
+        humidityElement.innerHTML = "";
+        windElement.innerHTML = "";
+        temperatureOneMax.innerHTML = "";
+        temperatureTwoMax.innerHTML = "";
+        temperatureThreeMax.innerHTML = "";
+        temperatureFourMax.innerHTML = "";
+        temperatureOneMin.innerHTML = "";
+        temperatureTwoMin.innerHTML = "";
+        temperatureThreeMin.innerHTML = "";
+        temperatureFourMin.innerHTML = "";
+      }
     }
 
     const timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
@@ -221,6 +269,7 @@ function handleSearch(event) {
       //______________________________________________________________________________________________________________
 
       // Function to change forecast
+
       function changeForecast(sheCodesResponse) {
         // day +1 data
         const dayOneTemperatureMax = `${Math.round(
@@ -444,6 +493,10 @@ function handleSearch(event) {
     const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
     const apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
+    if (fetchedLonCode === undefined) {
+      alert("hey");
+    }
+
     // FOURTH API CALL - to get forecast
     axios.get(apiUrlMain).then(getTemperatureData);
   }
@@ -495,7 +548,7 @@ function loadup() {
     const dayThree = document.querySelector("#day-three");
     const dayFour = document.querySelector("#day-four");
 
-    const minutes = date.getMinutes();
+    let minutes = date.getMinutes();
     const hours = date.getHours();
     const days = [
       "Sunday",
@@ -549,7 +602,7 @@ function loadup() {
     ];
 
     const currentHour = listOfHours[hours];
-    const currentMinute = minutes;
+    let currentMinute = minutes;
 
     // code to fix minute print error
     if (currentMinute <= 9) {

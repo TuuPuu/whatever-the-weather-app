@@ -63,6 +63,15 @@ body {
   margin-bottom: 0;
   margin-left: -50px;
   vertical-align: bottom;
+  transition: all ease-out 150ms;
+}
+
+.search-icon:hover {
+  opacity: 0.8;
+}
+
+.search-icon:active {
+  opacity: 0.6;
 }
 
 .search-container {
@@ -129,12 +138,19 @@ hr {
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
+  opacity: 0.9;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .secondary-weather-day {
   text-align: center;
   font-size: 16px;
   color: #1ca6c5;
+  font-weight: bold;
+}
+
+.max-temp {
   font-weight: bold;
 }
 
@@ -215,6 +231,10 @@ footer {
   justify-content: space-between;
 }
 
+.text {
+  margin: 5px;
+}
+
 .hyperlink {
   text-decoration: none;
   color: #1ea6c6;
@@ -238,6 +258,15 @@ button {
   margin-top: auto;
   justify-content: space-evenly;
   align-items: center;
+  transition: all ease-in-out 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:active {
+  opacity: 0.5;
 }
 
 .insta {

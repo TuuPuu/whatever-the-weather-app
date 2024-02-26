@@ -1,7 +1,7 @@
 /* INFO MODAL CODE */
 function openInfoBox() {
   // Get the modal
-  let modal = document.getElementById("infoModal");
+  const modal = document.getElementById("infoModal");
 
   // Get the button that opens the modal
   var button = document.getElementById("openModalButton");
@@ -40,16 +40,17 @@ function handleSearch(event) {
   function accessTime() {
     // FUNCTION TO GET SEARCHED TIME AND MANIPULATE DOM
     function getSearchedTime(thirdResponse) {
-      let date = new Date(thirdResponse.data.time * 1000);
-      let dateElement = document.querySelector("#current-date");
-      let dayOne = document.querySelector("#day-one");
-      let dayTwo = document.querySelector("#day-two");
-      let dayThree = document.querySelector("#day-three");
-      let dayFour = document.querySelector("#day-four");
+      const date = new Date(thirdResponse.data.time * 1000);
+      const dateElement = document.querySelector("#current-date");
+      const cityHeading = document.querySelector("#city-heading");
+      const dayOne = document.querySelector("#day-one");
+      const dayTwo = document.querySelector("#day-two");
+      const dayThree = document.querySelector("#day-three");
+      const dayFour = document.querySelector("#day-four");
 
       let minutes = date.getMinutes();
-      let hours = date.getHours();
-      let days = [
+      const hours = date.getHours();
+      const days = [
         "Sunday",
         "Monday",
         "Tuesday",
@@ -60,7 +61,7 @@ function handleSearch(event) {
       ];
 
       // GETTING THE TIME
-      let listOfHours = [
+      const listOfHours = [
         "00",
         "01",
         "02",
@@ -87,7 +88,7 @@ function handleSearch(event) {
         "23",
       ];
 
-      let listOfMinutes = [
+      const listOfMinutes = [
         "00",
         "01",
         "02",
@@ -100,7 +101,7 @@ function handleSearch(event) {
         "09",
       ];
 
-      let currentHour = listOfHours[hours];
+      const currentHour = listOfHours[hours];
       let currentMinute = minutes;
 
       // code to fix minute print error
@@ -109,12 +110,12 @@ function handleSearch(event) {
       }
 
       // here is the current time
-      let currentTime = `${currentHour}:${currentMinute}`;
+      const currentTime = `${currentHour}:${currentMinute}`;
 
-      let day = days[date.getDay()];
-      let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-      let mainDayArrayNumber = days.indexOf(day);
-      let searchedDate = `${day} ${currentTime}`;
+      const day = days[date.getDay()];
+      const shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+      const mainDayArrayNumber = days.indexOf(day);
+      const searchedDate = `${day} ${currentTime}`;
 
       // DOM manipulation
       dateElement.innerHTML = searchedDate;
@@ -122,10 +123,57 @@ function handleSearch(event) {
       dayTwo.innerHTML = shortDays[mainDayArrayNumber + 2];
       dayThree.innerHTML = shortDays[mainDayArrayNumber + 3];
       dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
+
+      // DOM variables
+      const temperatureElement = document.querySelector("#temperature");
+      const weatherDescriptionElement = document.querySelector(
+        "#weather-description"
+      );
+      const humidityElement = document.querySelector("#humidity");
+      const windElement = document.querySelector("#wind");
+
+      const temperatureOneMax = document.querySelector("#temperature-one-max");
+      const temperatureTwoMax = document.querySelector("#temperature-two-max");
+      const temperatureThreeMax = document.querySelector(
+        "#temperature-three-max"
+      );
+      const temperatureFourMax = document.querySelector(
+        "#temperature-four-max"
+      );
+
+      const temperatureOneMin = document.querySelector("#temperature-one-min");
+      const temperatureTwoMin = document.querySelector("#temperature-two-min");
+      const temperatureThreeMin = document.querySelector(
+        "#temperature-three-min"
+      );
+      const temperatureFourMin = document.querySelector(
+        "#temperature-four-min"
+      );
+
+      // DOM manipulation if country not found
+      if (dateElement.innerHTML === "undefined undefined:NaN") {
+        cityHeading.innerHTML = " Uh Oh...";
+        dateElement.innerHTML =
+          "Country not found. Please search again ʕ •ₒ• ʔ";
+        document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+
+        temperatureElement.innerHTML = "";
+        weatherDescriptionElement.innerHTML = "";
+        humidityElement.innerHTML = "";
+        windElement.innerHTML = "";
+        temperatureOneMax.innerHTML = "";
+        temperatureTwoMax.innerHTML = "";
+        temperatureThreeMax.innerHTML = "";
+        temperatureFourMax.innerHTML = "";
+        temperatureOneMin.innerHTML = "";
+        temperatureTwoMin.innerHTML = "";
+        temperatureThreeMin.innerHTML = "";
+        temperatureFourMin.innerHTML = "";
+      }
     }
 
-    let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-    let timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
+    const timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+    const timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
     `;
 
     // THIRD API CALL FOR TIME
@@ -134,7 +182,7 @@ function handleSearch(event) {
 
   // FUNCTION TO CAPITALISE ACCESED USER INPUT
   function capitaliseLetter() {
-    let submittedUserInput = userInput.value;
+    const submittedUserInput = userInput.value;
     const trimmedInput = submittedUserInput.trim();
     const firstLetter = trimmedInput.charAt(0);
     const firstLetterCap = firstLetter.toUpperCase();
@@ -147,7 +195,12 @@ function handleSearch(event) {
 
   // FUNCTION TO GET LON AND LAT GEO CODES IN ORDER TO USE IN SECOND API CALL FOR TEMP
   function accessWeather(response) {
+    //______________________________________________________________________________________________________________
+
     // SECOND API CALL- to get temp
+
+    //______________________________________________________________________________________________________________
+
     function getTemperatureData(secondResponse) {
       // DOM manipulation function
       function changeTemperatureInfo() {
@@ -156,239 +209,305 @@ function handleSearch(event) {
         humidityElement.innerHTML = humidity;
         windElement.innerHTML = wind;
 
-        temperatureOne.innerHTML = dayOneTemperature;
-        temperatureTwo.innerHTML = dayTwoTemperature;
-        temperatureThree.innerHTML = dayThreeTemperature;
-        temperatureFour.innerHTML = dayFourTemperature;
-
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
+      //______________________________________________________________________________________________________________
 
-      // current day data
-      // let data = secondResponse.data;
-      let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
-      let fetchedWind =
+      // Function to change Temperature Teddy
+      function changeTempTeddy() {
+        // changing the main weather icon - Temperature Teddy
+        if (weatherConditionMain === "Thunderstorm") {
+          document.getElementById("temp-teddy").src =
+            "./assets/thunderstorm.png";
+        } else if (weatherConditionMain === "Drizzle") {
+          document.getElementById("temp-teddy").src = "./assets/showerrain.png";
+        } else if (weatherConditionMain === "Rain") {
+          document.getElementById("temp-teddy").src = "./assets/rain.png";
+        } else if (weatherConditionMain === "Snow") {
+          document.getElementById("temp-teddy").src = "./assets/snow.png";
+        } else if (weatherConditionMain === "Clear") {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        } else if (
+          weatherConditionMain === "Haze" ||
+          weatherConditionMain === "Mist" ||
+          weatherConditionMain === "Smoke" ||
+          weatherConditionMain === "Dust" ||
+          weatherConditionMain === "Fog" ||
+          weatherConditionMain === "Sand" ||
+          weatherConditionMain === "Ash" ||
+          weatherConditionMain === "Squall" ||
+          weatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fog.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 801
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 802
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 803
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 804
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+        } else {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        }
+      }
+      //______________________________________________________________________________________________________________
+
+      // Function to change forecast
+
+      function changeForecast(sheCodesResponse) {
+        // day +1 data
+        const dayOneTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.maximum
+        )}&deg;C`;
+        const dayOneTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.minimum
+        )}&deg;C`;
+
+        // day +2 data
+        const dayTwoTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.maximum
+        )}&deg;C`;
+        const dayTwoTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.minimum
+        )}&deg;C`;
+
+        // day +3 data
+        const dayThreeTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.maximum
+        )}&deg;C`;
+        const dayThreeTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.minimum
+        )}&deg;C`;
+
+        // day +4 data
+        const dayFourTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.maximum
+        )}&deg;C`;
+        const dayFourTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.minimum
+        )}&deg;C`;
+
+        temperatureOneMax.innerHTML = dayOneTemperatureMax;
+        temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
+        temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
+        temperatureFourMax.innerHTML = dayFourTemperatureMax;
+
+        temperatureOneMin.innerHTML = dayOneTemperatureMin;
+        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
+        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
+        temperatureFourMin.innerHTML = dayFourTemperatureMin;
+      }
+      //______________________________________________________________________________________________________________
+
+      function changeForecastIcon() {
+        const dayOneWeatherConditionMain =
+          secondResponse.data.list[8].weather[0].main;
+
+        if (
+          dayOneWeatherConditionMain === "Thunderstorm" ||
+          dayOneWeatherConditionMain === "Drizzle" ||
+          dayOneWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-one-icon").innerHTML = "rainy";
+        } else if (dayOneWeatherConditionMain === "Snow") {
+          document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
+        } else if (dayOneWeatherConditionMain === "Clear") {
+          document.getElementById("day-one-icon").innerHTML = "sunny";
+        } else if (
+          dayOneWeatherConditionMain === "Haze" ||
+          dayOneWeatherConditionMain === "Mist" ||
+          dayOneWeatherConditionMain === "Smoke" ||
+          dayOneWeatherConditionMain === "Dust" ||
+          dayOneWeatherConditionMain === "Fog" ||
+          dayOneWeatherConditionMain === "Sand" ||
+          dayOneWeatherConditionMain === "Ash" ||
+          dayOneWeatherConditionMain === "Squall" ||
+          dayOneWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-one-icon").innerHTML = "foggy";
+        } else if (dayOneWeatherConditionMain === "Clouds") {
+          document.getElementById("day-one-icon").innerHTML = "cloud";
+        }
+
+        const dayTwoWeatherConditionMain =
+          secondResponse.data.list[16].weather[0].main;
+
+        if (
+          dayTwoWeatherConditionMain === "Thunderstorm" ||
+          dayTwoWeatherConditionMain === "Drizzle" ||
+          dayTwoWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-two-icon").innerHTML = "rainy";
+        } else if (dayTwoWeatherConditionMain === "Snow") {
+          document.getElementById("day-two-icon").innerHTML = "cloudy_snowing";
+        } else if (dayTwoWeatherConditionMain === "Clear") {
+          document.getElementById("day-two-icon").innerHTML = "sunny";
+        } else if (
+          dayTwoWeatherConditionMain === "Haze" ||
+          dayTwoWeatherConditionMain === "Mist" ||
+          dayTwoWeatherConditionMain === "Smoke" ||
+          dayTwoWeatherConditionMain === "Dust" ||
+          dayTwoWeatherConditionMain === "Fog" ||
+          dayTwoWeatherConditionMain === "Sand" ||
+          dayTwoWeatherConditionMain === "Ash" ||
+          dayTwoWeatherConditionMain === "Squall" ||
+          dayTwoWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-two-icon").innerHTML = "foggy";
+        } else if (dayTwoWeatherConditionMain === "Clouds") {
+          document.getElementById("day-two-icon").innerHTML = "cloud";
+        }
+
+        const dayThreeWeatherConditionMain =
+          secondResponse.data.list[24].weather[0].main;
+
+        if (
+          dayThreeWeatherConditionMain === "Thunderstorm" ||
+          dayThreeWeatherConditionMain === "Drizzle" ||
+          dayThreeWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-three-icon").innerHTML = "rainy";
+        } else if (dayThreeWeatherConditionMain === "Snow") {
+          document.getElementById("day-three-icon").innerHTML =
+            "cloudy_snowing";
+        } else if (dayThreeWeatherConditionMain === "Clear") {
+          document.getElementById("day-three-icon").innerHTML = "sunny";
+        } else if (
+          dayThreeWeatherConditionMain === "Haze" ||
+          dayThreeWeatherConditionMain === "Mist" ||
+          dayThreeWeatherConditionMain === "Smoke" ||
+          dayThreeWeatherConditionMain === "Dust" ||
+          dayThreeWeatherConditionMain === "Fog" ||
+          dayThreeWeatherConditionMain === "Sand" ||
+          dayThreeWeatherConditionMain === "Ash" ||
+          dayThreeWeatherConditionMain === "Squall" ||
+          dayThreeWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-three-icon").innerHTML = "foggy";
+        } else if (dayThreeWeatherConditionMain === "Clouds") {
+          document.getElementById("day-three-icon").innerHTML = "cloud";
+        }
+
+        const dayFourWeatherConditionMain =
+          secondResponse.data.list[32].weather[0].main;
+
+        if (
+          dayFourWeatherConditionMain === "Thunderstorm" ||
+          dayFourWeatherConditionMain === "Drizzle" ||
+          dayFourWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-four-icon").innerHTML = "rainy";
+        } else if (dayFourWeatherConditionMain === "Snow") {
+          document.getElementById("day-four-icon").innerHTML = "cloudy_snowing";
+        } else if (dayFourWeatherConditionMain === "Clear") {
+          document.getElementById("day-four-icon").innerHTML = "sunny";
+        } else if (
+          dayFourWeatherConditionMain === "Haze" ||
+          dayFourWeatherConditionMain === "Mist" ||
+          dayFourWeatherConditionMain === "Smoke" ||
+          dayFourWeatherConditionMain === "Dust" ||
+          dayFourWeatherConditionMain === "Fog" ||
+          dayFourWeatherConditionMain === "Sand" ||
+          dayFourWeatherConditionMain === "Ash" ||
+          dayFourWeatherConditionMain === "Squall" ||
+          dayFourWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-four-icon").innerHTML = "foggy";
+        } else if (dayFourWeatherConditionMain === "Clouds") {
+          document.getElementById("day-four-icon").innerHTML = "cloud";
+        }
+      }
+      //______________________________________________________________________________________________________________
+
+      // FETCHED DATA
+      const mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
+      const fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
-      let fetchedHumidity = secondResponse.data.list[0].main.humidity;
-      let wind = `${fetchedWind}m/s`;
-      let humidity = `${fetchedHumidity}%`;
-      let weatherDescription =
+      const fetchedHumidity = secondResponse.data.list[0].main.humidity;
+      const wind = `${fetchedWind}m/s`;
+      const humidity = `${fetchedHumidity}%`;
+      const weatherDescription =
         secondResponse.data.list[0].weather[0].description;
-      let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
-      let weatherConditionId = secondResponse.data.list[0].weather[0].id;
+      const weatherConditionMain = secondResponse.data.list[0].weather[0].main;
+      const weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
-      // changing the main weather icon - Temperature Teddy
-      if (weatherConditionMain === "Thunderstorm") {
-        document.getElementById("temp-teddy").src = "./assets/thunderstorm.png";
-      } else if (weatherConditionMain === "Drizzle") {
-        document.getElementById("temp-teddy").src = "./assets/showerrain.png";
-      } else if (weatherConditionMain === "Rain") {
-        document.getElementById("temp-teddy").src = "./assets/rain.png";
-      } else if (weatherConditionMain === "Snow") {
-        document.getElementById("temp-teddy").src = "./assets/snow.png";
-      } else if (weatherConditionMain === "Clear") {
-        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
-      } else if (
-        weatherConditionMain === "Haze" ||
-        weatherConditionMain === "Mist" ||
-        weatherConditionMain === "Smoke" ||
-        weatherConditionMain === "Dust" ||
-        weatherConditionMain === "Fog" ||
-        weatherConditionMain === "Sand" ||
-        weatherConditionMain === "Ash" ||
-        weatherConditionMain === "Squall" ||
-        weatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/fog.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 801
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 802
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 803
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/brokenclouds.png";
-      } else if (
-        weatherConditionMain === "Clouds" &&
-        weatherConditionId === 804
-      ) {
-        document.getElementById("temp-teddy").src = "./assets/cloudy.png";
-      } else {
-        document.getElementById("temp-teddy").src = "./assets/clearsky.png";
-      }
-
-      // day +1 data
-      let dayOneTemperature = `${Math.round(
-        secondResponse.data.list[8].main.temp
-      )}&deg;C`;
-      let dayOneWeatherConditionMain =
-        secondResponse.data.list[8].weather[0].main;
-
-      if (
-        dayOneWeatherConditionMain === "Thunderstorm" ||
-        dayOneWeatherConditionMain === "Drizzle" ||
-        dayOneWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-one-icon").innerHTML = "rainy";
-      } else if (dayOneWeatherConditionMain === "Snow") {
-        document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
-      } else if (dayOneWeatherConditionMain === "Clear") {
-        document.getElementById("day-one-icon").innerHTML = "sunny";
-      } else if (
-        dayOneWeatherConditionMain === "Haze" ||
-        dayOneWeatherConditionMain === "Mist" ||
-        dayOneWeatherConditionMain === "Smoke" ||
-        dayOneWeatherConditionMain === "Dust" ||
-        dayOneWeatherConditionMain === "Fog" ||
-        dayOneWeatherConditionMain === "Sand" ||
-        dayOneWeatherConditionMain === "Ash" ||
-        dayOneWeatherConditionMain === "Squall" ||
-        dayOneWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-one-icon").innerHTML = "foggy";
-      } else if (dayOneWeatherConditionMain === "Clouds") {
-        document.getElementById("day-one-icon").innerHTML = "cloud";
-      }
-
-      // day +2 data
-      let dayTwoTemperature = `${Math.round(
-        secondResponse.data.list[16].main.temp
-      )}&deg;C`;
-      let dayTwoWeatherConditionMain =
-        secondResponse.data.list[16].weather[0].main;
-
-      if (
-        dayTwoWeatherConditionMain === "Thunderstorm" ||
-        dayTwoWeatherConditionMain === "Drizzle" ||
-        dayTwoWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-two-icon").innerHTML = "rainy";
-      } else if (dayTwoWeatherConditionMain === "Snow") {
-        document.getElementById("day-two-icon").innerHTML = "cloudy_snowing";
-      } else if (dayTwoWeatherConditionMain === "Clear") {
-        document.getElementById("day-two-icon").innerHTML = "sunny";
-      } else if (
-        dayTwoWeatherConditionMain === "Haze" ||
-        dayTwoWeatherConditionMain === "Mist" ||
-        dayTwoWeatherConditionMain === "Smoke" ||
-        dayTwoWeatherConditionMain === "Dust" ||
-        dayTwoWeatherConditionMain === "Fog" ||
-        dayTwoWeatherConditionMain === "Sand" ||
-        dayTwoWeatherConditionMain === "Ash" ||
-        dayTwoWeatherConditionMain === "Squall" ||
-        dayTwoWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-two-icon").innerHTML = "foggy";
-      } else if (dayTwoWeatherConditionMain === "Clouds") {
-        document.getElementById("day-two-icon").innerHTML = "cloud";
-      }
-
-      // day +3 data
-      let dayThreeTemperature = `${Math.round(
-        secondResponse.data.list[24].main.temp
-      )}&deg;C`;
-      let dayThreeWeatherConditionMain =
-        secondResponse.data.list[24].weather[0].main;
-
-      if (
-        dayThreeWeatherConditionMain === "Thunderstorm" ||
-        dayThreeWeatherConditionMain === "Drizzle" ||
-        dayThreeWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-three-icon").innerHTML = "rainy";
-      } else if (dayThreeWeatherConditionMain === "Snow") {
-        document.getElementById("day-three-icon").innerHTML = "cloudy_snowing";
-      } else if (dayThreeWeatherConditionMain === "Clear") {
-        document.getElementById("day-three-icon").innerHTML = "sunny";
-      } else if (
-        dayThreeWeatherConditionMain === "Haze" ||
-        dayThreeWeatherConditionMain === "Mist" ||
-        dayThreeWeatherConditionMain === "Smoke" ||
-        dayThreeWeatherConditionMain === "Dust" ||
-        dayThreeWeatherConditionMain === "Fog" ||
-        dayThreeWeatherConditionMain === "Sand" ||
-        dayThreeWeatherConditionMain === "Ash" ||
-        dayThreeWeatherConditionMain === "Squall" ||
-        dayThreeWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-three-icon").innerHTML = "foggy";
-      } else if (dayThreeWeatherConditionMain === "Clouds") {
-        document.getElementById("day-three-icon").innerHTML = "cloud";
-      }
-
-      // day +4 data
-      let dayFourTemperature = `${Math.round(
-        secondResponse.data.list[32].main.temp
-      )}&deg;C`;
-      let dayFourWeatherConditionMain =
-        secondResponse.data.list[32].weather[0].main;
-
-      if (
-        dayFourWeatherConditionMain === "Thunderstorm" ||
-        dayFourWeatherConditionMain === "Drizzle" ||
-        dayFourWeatherConditionMain === "Rain"
-      ) {
-        document.getElementById("day-four-icon").innerHTML = "rainy";
-      } else if (dayFourWeatherConditionMain === "Snow") {
-        document.getElementById("day-four-icon").innerHTML = "cloudy_snowing";
-      } else if (dayFourWeatherConditionMain === "Clear") {
-        document.getElementById("day-four-icon").innerHTML = "sunny";
-      } else if (
-        dayFourWeatherConditionMain === "Haze" ||
-        dayFourWeatherConditionMain === "Mist" ||
-        dayFourWeatherConditionMain === "Smoke" ||
-        dayFourWeatherConditionMain === "Dust" ||
-        dayFourWeatherConditionMain === "Fog" ||
-        dayFourWeatherConditionMain === "Sand" ||
-        dayFourWeatherConditionMain === "Ash" ||
-        dayFourWeatherConditionMain === "Squall" ||
-        dayFourWeatherConditionMain === "Tornado"
-      ) {
-        document.getElementById("day-four-icon").innerHTML = "foggy";
-      } else if (dayFourWeatherConditionMain === "Clouds") {
-        document.getElementById("day-four-icon").innerHTML = "cloud";
-      }
+      //______________________________________________________________________________________________________________
 
       // DOM variables
-      let temperatureElement = document.querySelector("#temperature");
-      let weatherDescriptionElement = document.querySelector(
+      const temperatureElement = document.querySelector("#temperature");
+      const weatherDescriptionElement = document.querySelector(
         "#weather-description"
       );
-      let humidityElement = document.querySelector("#humidity");
-      let windElement = document.querySelector("#wind");
+      const humidityElement = document.querySelector("#humidity");
+      const windElement = document.querySelector("#wind");
 
-      let temperatureOne = document.querySelector("#temperature-one");
-      let temperatureTwo = document.querySelector("#temperature-two");
-      let temperatureThree = document.querySelector("#temperature-three");
-      let temperatureFour = document.querySelector("#temperature-four");
+      const temperatureOneMax = document.querySelector("#temperature-one-max");
+      const temperatureTwoMax = document.querySelector("#temperature-two-max");
+      const temperatureThreeMax = document.querySelector(
+        "#temperature-three-max"
+      );
+      const temperatureFourMax = document.querySelector(
+        "#temperature-four-max"
+      );
+
+      const temperatureOneMin = document.querySelector("#temperature-one-min");
+      const temperatureTwoMin = document.querySelector("#temperature-two-min");
+      const temperatureThreeMin = document.querySelector(
+        "#temperature-three-min"
+      );
+      const temperatureFourMin = document.querySelector(
+        "#temperature-four-min"
+      );
+
+      //______________________________________________________________________________________________________________
+
+      const sheCodesApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+      const sheCodesApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${sheCodesApiKey}`;
 
       changeTemperatureInfo();
+      changeTempTeddy();
+      changeForecastIcon();
+
+      axios.get(sheCodesApiUrl).then(changeForecast);
     }
 
-    let fetchedLonCode = response.data[0].lon;
-    let fetchedLatCode = response.data[0].lat;
+    const fetchedLonCode = response.data[0].lon;
+    const fetchedLatCode = response.data[0].lat;
 
-    let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-    let apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
+    const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+    const apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
+    if (fetchedLonCode === undefined) {
+      alert("hey");
+    }
+
+    // FOURTH API CALL - to get forecast
     axios.get(apiUrlMain).then(getTemperatureData);
   }
 
   // list of main global variables
-  let userInput = document.querySelector("#search-form-input");
-  let cityName = document.querySelector("#city-heading");
-  let updatedInput = capitaliseLetter();
-  let citySearch = userInput.value;
-  let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-  let apiUrlGeocode = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
+  const userInput = document.querySelector("#search-form-input");
+  const cityName = document.querySelector("#city-heading");
+  const updatedInput = capitaliseLetter();
+  const citySearch = userInput.value;
+  const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+  const apiUrlGeocode = `https://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
   // FIRST API CALL - to get geo codes
   axios.get(apiUrlGeocode).then(accessWeather);
@@ -402,7 +521,7 @@ function handleSearch(event) {
 //______________________________________________________________________________________________________________
 
 /* DOM LISTEN OUT FOR USER SEARCH */
-let searchFormElement = document.querySelector("#search-form");
+const searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 //______________________________________________________________________________________________________________
@@ -410,30 +529,28 @@ searchFormElement.addEventListener("submit", handleSearch);
 /* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load */
 
 function loadup() {
-  // console.log("working");
-
   // list of main variables
-
-  let cityName = document.querySelector("#city-heading");
-  let citySearch = "London";
-  let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-  let apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
+  const cityName = document.querySelector("#city-heading");
+  const citySearch = "London";
+  const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+  const apiUrlGeocode = `http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=${apiKey}`;
 
   axios.get(apiUrlGeocode).then(accessWeather);
 
-  // FUNCTION TO CHANGE DATE AND TIME
+  //______________________________________________________________________________________________________________
+
   // FUNCTION TO GET SEARCHED TIME AND MANIPULATE DOM
   function getSearchedTime(thirdResponse) {
-    let date = new Date(thirdResponse.data.time * 1000);
-    let dateElement = document.querySelector("#current-date");
-    let dayOne = document.querySelector("#day-one");
-    let dayTwo = document.querySelector("#day-two");
-    let dayThree = document.querySelector("#day-three");
-    let dayFour = document.querySelector("#day-four");
+    const date = new Date(thirdResponse.data.time * 1000);
+    const dateElement = document.querySelector("#current-date");
+    const dayOne = document.querySelector("#day-one");
+    const dayTwo = document.querySelector("#day-two");
+    const dayThree = document.querySelector("#day-three");
+    const dayFour = document.querySelector("#day-four");
 
     let minutes = date.getMinutes();
-    let hours = date.getHours();
-    let days = [
+    const hours = date.getHours();
+    const days = [
       "Sunday",
       "Monday",
       "Tuesday",
@@ -444,7 +561,7 @@ function loadup() {
     ];
 
     // GETTING THE TIME
-    let listOfHours = [
+    const listOfHours = [
       "00",
       "01",
       "02",
@@ -471,7 +588,7 @@ function loadup() {
       "23",
     ];
 
-    let listOfMinutes = [
+    const listOfMinutes = [
       "00",
       "01",
       "02",
@@ -484,7 +601,7 @@ function loadup() {
       "09",
     ];
 
-    let currentHour = listOfHours[hours];
+    const currentHour = listOfHours[hours];
     let currentMinute = minutes;
 
     // code to fix minute print error
@@ -493,12 +610,12 @@ function loadup() {
     }
 
     // here is the current time
-    let currentTime = `${currentHour}:${currentMinute}`;
+    const currentTime = `${currentHour}:${currentMinute}`;
 
-    let day = days[date.getDay()];
-    let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
-    let mainDayArrayNumber = days.indexOf(day);
-    let searchedDate = `${day} ${currentTime}`;
+    const day = days[date.getDay()];
+    const shortDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+    const mainDayArrayNumber = days.indexOf(day);
+    const searchedDate = `${day} ${currentTime}`;
 
     // DOM manipulation
     dateElement.innerHTML = searchedDate;
@@ -507,89 +624,299 @@ function loadup() {
     dayThree.innerHTML = shortDays[mainDayArrayNumber + 3];
     dayFour.innerHTML = shortDays[mainDayArrayNumber + 4];
 
-    console.log(mainDayArrayNumber);
-
     // Time format fix
     if (minutes < 10) {
       minutes = `0${minutes}`;
     }
   }
 
-  let timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
-  let timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
+  //______________________________________________________________________________________________________________
+
+  const timeApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+  const timeApiUrl = `https://api.shecodes.io/weather/v1/current?query=${citySearch}&key=${timeApiKey}&units=metric
     `;
 
   // THIRD API CALL FOR TIME
   axios.get(timeApiUrl).then(getSearchedTime);
 
+  //______________________________________________________________________________________________________________
+
   function accessWeather(response) {
     // SECOND API CALL- to get temp
     function getTemperatureData(secondResponse) {
-      // DOM manipulation function
+      //______________________________________________________________________________________________________________
 
       // current day data
-      let data = secondResponse.data;
-      let mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
-      let fetchedWind =
+      const mainTemperature = Math.round(secondResponse.data.list[0].main.temp);
+      const fetchedWind =
         Math.round(secondResponse.data.list[0].wind.speed * 10) / 10;
-      let fetchedHumidity = secondResponse.data.list[0].main.humidity;
-      let wind = `${fetchedWind}m/s`;
-      let humidity = `${fetchedHumidity}%`;
-      let weatherDescription =
+      const fetchedHumidity = secondResponse.data.list[0].main.humidity;
+      const wind = `${fetchedWind}m/s`;
+      const humidity = `${fetchedHumidity}%`;
+      const weatherDescription =
         secondResponse.data.list[0].weather[0].description;
-      let weatherConditionMain = secondResponse.data.list[0].weather[0].main;
-      let weatherConditionId = secondResponse.data.list[0].weather[0].id;
+      const weatherConditionMain = secondResponse.data.list[0].weather[0].main;
+      const weatherConditionId = secondResponse.data.list[0].weather[0].id;
 
-      // day +1 data
-      let dayOneTemperature = `${Math.round(
-        secondResponse.data.list[8].main.temp
-      )}&deg;C`;
-      let dayOneWeatherConditionMain =
-        secondResponse.data.list[8].weather[0].main;
-      let dayOneWeatherConditionId = secondResponse.data.list[8].weather[0].id;
+      //______________________________________________________________________________________________________________
 
-      // day +2 data
-      let dayTwoTemperature = `${Math.round(
-        secondResponse.data.list[16].main.temp
-      )}&deg;C`;
-      let dayTwoWeatherConditionMain =
-        secondResponse.data.list[16].weather[0].main;
-      let dayTwoWeatherConditionId = secondResponse.data.list[16].weather[0].id;
+      // Function to change Temperature Teddy
+      function changeTempTeddy() {
+        // changing the main weather icon - Temperature Teddy
+        if (weatherConditionMain === "Thunderstorm") {
+          document.getElementById("temp-teddy").src =
+            "./assets/thunderstorm.png";
+        } else if (weatherConditionMain === "Drizzle") {
+          document.getElementById("temp-teddy").src = "./assets/showerrain.png";
+        } else if (weatherConditionMain === "Rain") {
+          document.getElementById("temp-teddy").src = "./assets/rain.png";
+        } else if (weatherConditionMain === "Snow") {
+          document.getElementById("temp-teddy").src = "./assets/snow.png";
+        } else if (weatherConditionMain === "Clear") {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        } else if (
+          weatherConditionMain === "Haze" ||
+          weatherConditionMain === "Mist" ||
+          weatherConditionMain === "Smoke" ||
+          weatherConditionMain === "Dust" ||
+          weatherConditionMain === "Fog" ||
+          weatherConditionMain === "Sand" ||
+          weatherConditionMain === "Ash" ||
+          weatherConditionMain === "Squall" ||
+          weatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fog.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 801
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/fewclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 802
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 803
+        ) {
+          document.getElementById("temp-teddy").src =
+            "./assets/brokenclouds.png";
+        } else if (
+          weatherConditionMain === "Clouds" &&
+          weatherConditionId === 804
+        ) {
+          document.getElementById("temp-teddy").src = "./assets/cloudy.png";
+        } else {
+          document.getElementById("temp-teddy").src = "./assets/clearsky.png";
+        }
+      }
 
-      // day +3 data
-      let dayThreeTemperature = `${Math.round(
-        secondResponse.data.list[24].main.temp
-      )}&deg;C`;
-      let dayThreeWeatherConditionMain =
-        secondResponse.data.list[24].weather[0].main;
-      let dayThreeWeatherConditionId =
-        secondResponse.data.list[24].weather[0].id;
+      // Function to change forecast
+      function changeForecast(sheCodesResponse) {
+        // day +1 data
+        const dayOneTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.maximum
+        )}&deg;C`;
+        const dayOneTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[0].temperature.minimum
+        )}&deg;C`;
 
-      // day +4 data
-      let dayFourTemperature = `${Math.round(
-        secondResponse.data.list[32].main.temp
-      )}&deg;C`;
-      let dayFourWeatherConditionMain =
-        secondResponse.data.list[32].weather[0].main;
-      let dayFourWeatherConditionId =
-        secondResponse.data.list[32].weather[0].id;
+        // day +2 data
+        const dayTwoTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.maximum
+        )}&deg;C`;
+        const dayTwoTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[1].temperature.minimum
+        )}&deg;C`;
+
+        // day +3 data
+        const dayThreeTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.maximum
+        )}&deg;C`;
+        const dayThreeTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[2].temperature.minimum
+        )}&deg;C`;
+
+        // day +4 data
+        const dayFourTemperatureMax = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.maximum
+        )}&deg;C`;
+        const dayFourTemperatureMin = `${Math.round(
+          sheCodesResponse.data.daily[3].temperature.minimum
+        )}&deg;C`;
+
+        //______________________________________________________________________________________________________________
+
+        temperatureOneMax.innerHTML = dayOneTemperatureMax;
+        temperatureTwoMax.innerHTML = dayTwoTemperatureMax;
+        temperatureThreeMax.innerHTML = dayThreeTemperatureMax;
+        temperatureFourMax.innerHTML = dayFourTemperatureMax;
+
+        temperatureOneMin.innerHTML = dayOneTemperatureMin;
+        temperatureTwoMin.innerHTML = dayTwoTemperatureMin;
+        temperatureThreeMin.innerHTML = dayThreeTemperatureMin;
+        temperatureFourMin.innerHTML = dayFourTemperatureMin;
+      }
+
+      //______________________________________________________________________________________________________________
+
+      function changeForecastIcon() {
+        const dayOneWeatherConditionMain =
+          secondResponse.data.list[8].weather[0].main;
+
+        if (
+          dayOneWeatherConditionMain === "Thunderstorm" ||
+          dayOneWeatherConditionMain === "Drizzle" ||
+          dayOneWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-one-icon").innerHTML = "rainy";
+        } else if (dayOneWeatherConditionMain === "Snow") {
+          document.getElementById("day-one-icon").innerHTML = "cloudy_snowing";
+        } else if (dayOneWeatherConditionMain === "Clear") {
+          document.getElementById("day-one-icon").innerHTML = "sunny";
+        } else if (
+          dayOneWeatherConditionMain === "Haze" ||
+          dayOneWeatherConditionMain === "Mist" ||
+          dayOneWeatherConditionMain === "Smoke" ||
+          dayOneWeatherConditionMain === "Dust" ||
+          dayOneWeatherConditionMain === "Fog" ||
+          dayOneWeatherConditionMain === "Sand" ||
+          dayOneWeatherConditionMain === "Ash" ||
+          dayOneWeatherConditionMain === "Squall" ||
+          dayOneWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-one-icon").innerHTML = "foggy";
+        } else if (dayOneWeatherConditionMain === "Clouds") {
+          document.getElementById("day-one-icon").innerHTML = "cloud";
+        }
+
+        //______________________________________________________________________________________________________________
+
+        const dayTwoWeatherConditionMain =
+          secondResponse.data.list[16].weather[0].main;
+
+        if (
+          dayTwoWeatherConditionMain === "Thunderstorm" ||
+          dayTwoWeatherConditionMain === "Drizzle" ||
+          dayTwoWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-two-icon").innerHTML = "rainy";
+        } else if (dayTwoWeatherConditionMain === "Snow") {
+          document.getElementById("day-two-icon").innerHTML = "cloudy_snowing";
+        } else if (dayTwoWeatherConditionMain === "Clear") {
+          document.getElementById("day-two-icon").innerHTML = "sunny";
+        } else if (
+          dayTwoWeatherConditionMain === "Haze" ||
+          dayTwoWeatherConditionMain === "Mist" ||
+          dayTwoWeatherConditionMain === "Smoke" ||
+          dayTwoWeatherConditionMain === "Dust" ||
+          dayTwoWeatherConditionMain === "Fog" ||
+          dayTwoWeatherConditionMain === "Sand" ||
+          dayTwoWeatherConditionMain === "Ash" ||
+          dayTwoWeatherConditionMain === "Squall" ||
+          dayTwoWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-two-icon").innerHTML = "foggy";
+        } else if (dayTwoWeatherConditionMain === "Clouds") {
+          document.getElementById("day-two-icon").innerHTML = "cloud";
+        }
+
+        //______________________________________________________________________________________________________________
+
+        const dayThreeWeatherConditionMain =
+          secondResponse.data.list[24].weather[0].main;
+
+        if (
+          dayThreeWeatherConditionMain === "Thunderstorm" ||
+          dayThreeWeatherConditionMain === "Drizzle" ||
+          dayThreeWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-three-icon").innerHTML = "rainy";
+        } else if (dayThreeWeatherConditionMain === "Snow") {
+          document.getElementById("day-three-icon").innerHTML =
+            "cloudy_snowing";
+        } else if (dayThreeWeatherConditionMain === "Clear") {
+          document.getElementById("day-three-icon").innerHTML = "sunny";
+        } else if (
+          dayThreeWeatherConditionMain === "Haze" ||
+          dayThreeWeatherConditionMain === "Mist" ||
+          dayThreeWeatherConditionMain === "Smoke" ||
+          dayThreeWeatherConditionMain === "Dust" ||
+          dayThreeWeatherConditionMain === "Fog" ||
+          dayThreeWeatherConditionMain === "Sand" ||
+          dayThreeWeatherConditionMain === "Ash" ||
+          dayThreeWeatherConditionMain === "Squall" ||
+          dayThreeWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-three-icon").innerHTML = "foggy";
+        } else if (dayThreeWeatherConditionMain === "Clouds") {
+          document.getElementById("day-three-icon").innerHTML = "cloud";
+        }
+
+        //______________________________________________________________________________________________________________
+
+        const dayFourWeatherConditionMain =
+          secondResponse.data.list[32].weather[0].main;
+
+        if (
+          dayFourWeatherConditionMain === "Thunderstorm" ||
+          dayFourWeatherConditionMain === "Drizzle" ||
+          dayFourWeatherConditionMain === "Rain"
+        ) {
+          document.getElementById("day-four-icon").innerHTML = "rainy";
+        } else if (dayFourWeatherConditionMain === "Snow") {
+          document.getElementById("day-four-icon").innerHTML = "cloudy_snowing";
+        } else if (dayFourWeatherConditionMain === "Clear") {
+          document.getElementById("day-four-icon").innerHTML = "sunny";
+        } else if (
+          dayFourWeatherConditionMain === "Haze" ||
+          dayFourWeatherConditionMain === "Mist" ||
+          dayFourWeatherConditionMain === "Smoke" ||
+          dayFourWeatherConditionMain === "Dust" ||
+          dayFourWeatherConditionMain === "Fog" ||
+          dayFourWeatherConditionMain === "Sand" ||
+          dayFourWeatherConditionMain === "Ash" ||
+          dayFourWeatherConditionMain === "Squall" ||
+          dayFourWeatherConditionMain === "Tornado"
+        ) {
+          document.getElementById("day-four-icon").innerHTML = "foggy";
+        } else if (dayFourWeatherConditionMain === "Clouds") {
+          document.getElementById("day-four-icon").innerHTML = "cloud";
+        }
+      }
+
+      //______________________________________________________________________________________________________________
 
       // DOM variables
-      let temperatureElement = document.querySelector("#temperature");
-      let weatherDescriptionElement = document.querySelector(
+      const temperatureElement = document.querySelector("#temperature");
+      const weatherDescriptionElement = document.querySelector(
         "#weather-description"
       );
 
-      let humidityElement = document.querySelector("#humidity");
-      let windElement = document.querySelector("#wind");
-      let dayOne = document.querySelector("#day-one");
-      let dayTwo = document.querySelector("#day-two");
-      let dayThree = document.querySelector("#day-three");
-      let dayFour = document.querySelector("#day-four");
-      let temperatureOne = document.querySelector("#temperature-one");
-      let temperatureTwo = document.querySelector("#temperature-two");
-      let temperatureThree = document.querySelector("#temperature-three");
-      let temperatureFour = document.querySelector("#temperature-four");
+      const humidityElement = document.querySelector("#humidity");
+      const windElement = document.querySelector("#wind");
+
+      const temperatureOneMax = document.querySelector("#temperature-one-max");
+      const temperatureTwoMax = document.querySelector("#temperature-two-max");
+      const temperatureThreeMax = document.querySelector(
+        "#temperature-three-max"
+      );
+      const temperatureFourMax = document.querySelector(
+        "#temperature-four-max"
+      );
+
+      const temperatureOneMin = document.querySelector("#temperature-one-min");
+      const temperatureTwoMin = document.querySelector("#temperature-two-min");
+      const temperatureThreeMin = document.querySelector(
+        "#temperature-three-min"
+      );
+      const temperatureFourMin = document.querySelector(
+        "#temperature-four-min"
+      );
+
+      //______________________________________________________________________________________________________________
 
       function changeTemperatureInfo() {
         cityName.innerHTML = "London";
@@ -597,22 +924,29 @@ function loadup() {
         humidityElement.innerHTML = humidity;
         windElement.innerHTML = wind;
 
-        temperatureOne.innerHTML = dayOneTemperature;
-        temperatureTwo.innerHTML = dayTwoTemperature;
-        temperatureThree.innerHTML = dayThreeTemperature;
-        temperatureFour.innerHTML = dayFourTemperature;
-
         temperatureElement.innerHTML = mainTemperature;
         weatherDescriptionElement.innerHTML = weatherDescription;
       }
+
+      //______________________________________________________________________________________________________________
+
+      const sheCodesApiKey = "f83ea03eaec86b89t28973b8846f30o5";
+      const sheCodesApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${fetchedLonCode}&lat=${fetchedLatCode}&key=${sheCodesApiKey}`;
+
+      //______________________________________________________________________________________________________________
+
       changeTemperatureInfo();
+      changeTempTeddy();
+      changeForecastIcon();
+
+      axios.get(sheCodesApiUrl).then(changeForecast);
     }
 
-    let fetchedLonCode = response.data[0].lon;
-    let fetchedLatCode = response.data[0].lat;
+    const fetchedLonCode = response.data[0].lon;
+    const fetchedLatCode = response.data[0].lat;
 
-    let apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
-    let apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
+    const apiKey = "50850ed39d5e31cd4cb601304d3ee7c3";
+    const apiUrlMain = `https://api.openweathermap.org/data/2.5/forecast?lat=${fetchedLatCode}&lon=${fetchedLonCode}&appid=${apiKey}&units=metric`;
 
     axios.get(apiUrlMain).then(getTemperatureData);
   }

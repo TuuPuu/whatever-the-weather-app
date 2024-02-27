@@ -527,7 +527,19 @@ searchFormElement.addEventListener("submit", handleSearch);
 //______________________________________________________________________________________________________________
 
 /* RUN SEARCH FOR LONDON ON LOADUP - Code to run a search for "London" on load */
+function onPageLoad() {
+  // Set the city search input value to London
+  const userInput = document.querySelector("#search-form-input");
+  userInput.value = "London";
 
+  // Trigger the search function
+  handleSearch(new Event("submit"));
+}
+
+/* DOM LISTEN OUT FOR PAGE LOAD */
+window.addEventListener("load", onPageLoad);
+
+/*
 function loadup() {
   // list of main variables
   const cityName = document.querySelector("#city-heading");
@@ -955,3 +967,4 @@ function loadup() {
 window.onload = loadup;
 
 //______________________________________________________________________________________________________________
+*/
